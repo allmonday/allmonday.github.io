@@ -152,8 +152,7 @@ http://www.7330.com/op/1108774_2.shtml
 
 1. https 的链接无法发送 
 
-```Refused to frame 'http://localhost:8888/' because it violates the following Content Security Policy directive: "frame-src 'self' render.githubusercontent.com gist.github.com www.youtube.com player.vimeo.com checkout.paypal.com".
-```
+>Refused to frame 'http://localhost:8888/' because it violates the following Content Security Policy directive: "frame-src 'self' render.githubusercontent.com gist.github.com www.youtube.com player.vimeo.com checkout.paypal.com".
 
 2. 还是得用`jsonp`这个方法更主流一些吧
 
