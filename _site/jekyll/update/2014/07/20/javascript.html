@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>kikodo</title>
+        <link href="http://cdn.staticfile.org/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/highlight.js/8.0/styles/default.min.css" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-scrolltofixed.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            console.log('hi');
+            $('.header').scrollToFixed();
+          })
+        </script>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="content-container">
+            <div class="content-sidebar" style="background: #eee;" >
+              <div class="content-sidebar-header">
+                <a href="/">
+                <img src="/images/avatar.JPG" class="avatar" alt="">
+                </a>
+              </div>
+              <div class="header">
+                <h1 class="title text-center"><a href="/">tangkikodo <span>python,js</span></a></h1>
+              </div>
+              </div>
+            <div class="content-mainbar">
+              <h1>你好 javascript</h1>
+<p class="meta">20 Jul 2014</p>
+
+<code>没事多看看</code>
+
+<code>加点新的吧</code>
+
+
+<div class="post">
+<h2>String</h2>
+
+<h3>&quot; and &#39;</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;tangkikodo&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">statment</span> <span class="o">=</span> <span class="s2">&quot;this is kikodo&#39;s string&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">statment2</span> <span class="o">=</span> <span class="s1">&#39;He is a &quot;freak&quot;&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">statment3</span> <span class="o">=</span> <span class="s2">&quot;escape here: \&quot;this is kikodo\&#39; string\&quot;&quot;</span>
+</code></pre></div>
+<h3>escape</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="s2">&quot;C:\\folder\\myfile.c&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">multiline</span> <span class="o">=</span> <span class="s2">&quot;this is a long\</span>
+<span class="s2">string&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">multiline2</span> <span class="o">=</span> <span class="s2">&quot;this is line1\nthis is line2\n&quot;</span><span class="p">;</span>
+</code></pre></div>
+<h3>join</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">part1</span> <span class="o">=</span> <span class="s2">&quot;hello &quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">part2</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">all</span> <span class="o">=</span> <span class="nx">part1</span> <span class="o">+</span> <span class="nx">part2</span><span class="p">;</span>
+</code></pre></div>
+<h3>string method</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">);</span> <span class="c1">//World-&gt; -1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">//start, length</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;HELLO&quot;</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">());</span> <span class="c1">//origin str do not change</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;HELLO&quot;</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">());</span> <span class="c1">//origin str do not change</span>
+</code></pre></div>
+<h3>string compares</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">first</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">second</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">;</span>
+<span class="c1">// == will change type</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="nx">second</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span> <span class="p">{</span>  
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;the strings are equal&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;the strings are different&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">compare</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="s1">&#39;&lt;&#39;</span> <span class="o">+</span> <span class="nx">b</span> <span class="p">,</span> <span class="nx">a</span> <span class="o">&lt;</span> <span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">compare</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">compare</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="c1">// false 0x41, 0x31</span>
+<span class="nx">compare</span><span class="p">(</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">);</span> <span class="c1">// compare one by one. and substr lose</span>
+<span class="nx">compare</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">,</span> <span class="s1">&#39;app&#39;</span><span class="p">)</span> <span class="c1">//false ,if &lt;= will be equal</span>
+</code></pre></div>
+<h2>Numbers</h2>
+
+<h3>only one type of number</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">123</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="nx">d</span> <span class="o">=</span> <span class="mf">123.4321</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="nx">f</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">*</span> <span class="nx">f</span><span class="p">;</span> 
+<span class="c1">//0.0200000000000000004 , near but not..</span>
+</code></pre></div>
+<h3>advance</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="mi">10</span><span class="nx">E6</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="mf">1.23E6</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">012</span><span class="p">;</span> <span class="c1">// oct 12 -&gt; 10</span>
+<span class="kd">var</span> <span class="nx">ii</span> <span class="o">=</span> <span class="mi">019</span><span class="p">;</span> <span class="c1">// auto change to decimal..</span>
+<span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mh">0x11</span><span class="p">;</span> <span class="c1">//heximal</span>
+</code></pre></div>
+<h2>convert between string and number</h2>
+
+<h3>convert to whole number</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;197&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">jj</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;012&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">jjj</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;019&quot;</span><span class="p">);</span> <span class="c1">// -&gt; 1</span>
+<span class="c1">//recommand way</span>
+<span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;019&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// -&gt; 19</span>
+<span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;0100110&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;0100110&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;23 people&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">//as much as it could</span>
+
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="s2">&quot;123.45&quot;</span><span class="p">);</span>
+</code></pre></div>
+<h3>NaN</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="kc">NaN</span><span class="p">;</span><span class="c1">//false  </span>
+<span class="nx">l</span> <span class="o">==</span> <span class="nx">l</span><span class="p">;</span>     <span class="c1">//false </span>
+<span class="nx">l</span> <span class="o">===</span> <span class="nx">l</span><span class="p">;</span>    <span class="c1">//false</span>
+<span class="nx">l</span> <span class="o">===</span> <span class="kc">NaN</span><span class="p">;</span>  <span class="c1">//false</span>
+<span class="c1">//use is NaN()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">l</span><span class="p">));</span>
+</code></pre></div>
+<h2>Operations</h2>
+
+<h3>operate</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mf">4.2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">/</span> <span class="mi">8</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">/</span> <span class="mi">7</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>
+</code></pre></div>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence">operator precedence</a></p>
+
+<h3>comparsion</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">===</span> <span class="mf">1.00</span><span class="p">);</span> <span class="c1">//true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">);</span> <span class="c1">//true ,auto change</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">===</span> <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span> <span class="c1">//true</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">//true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="mi">1</span> <span class="o">!==</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">//true</span>
+</code></pre></div>
+<h3>math</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mf">2.7</span><span class="p">);</span> <span class="c1">//upper from 2.5.</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">2.9</span><span class="p">);</span> <span class="c1">// 2</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="mf">6.2</span><span class="p">);</span> <span class="c1">// 7</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="c1">// type Math in Chrome&#39;s console, you can view all methods</span>
+</code></pre></div>
+<h2>Array</h2>
+
+<h3>define</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;some&#39;</span><span class="p">,</span> <span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;here&#39;</span><span class="p">];</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">}];</span>
+<span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;substr&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]];</span>
+<span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span> <span class="c1">//define </span>
+</code></pre></div>
+<h3>slice and operate</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">word</span> <span class="o">=</span> <span class="nx">y</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">y</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">y</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="nx">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ud</span> <span class="o">=</span> <span class="nx">y</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span> <span class="c1">//undefined</span>
+<span class="nx">y</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">144</span><span class="p">;</span>
+<span class="nx">y</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">21</span><span class="p">;</span> <span class="c1">//interval value -&gt; undefined</span>
+<span class="nx">y</span><span class="p">[</span><span class="nx">y</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;new element&quot;</span><span class="p">;</span>
+<span class="nx">y</span><span class="p">[</span><span class="nx">y</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;new element&quot;</span><span class="p">;</span>
+<span class="nx">y</span><span class="p">[</span><span class="nx">y</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;new element&quot;</span><span class="p">;</span> <span class="c1">//auto add at end</span>
+</code></pre></div>
+<h3>methods</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/*push and pop*/</span>
+<span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+<span class="c1">//log, otherwise it will be the same</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> 
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">//return current length</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">//log</span>
+
+<span class="kd">var</span> <span class="nx">lastone</span> <span class="o">=</span> <span class="nx">my_array</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">lastone2</span> <span class="o">=</span> <span class="nx">my_array</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+
+<span class="cm">/* unshift and shift*/</span>
+<span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>  <span class="c1">// 2,3,4</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>  <span class="c1">// 1,2,3,4</span>
+
+<span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>  <span class="c1">// 2,3,4</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>  <span class="c1">// 3,4</span>
+</code></pre></div>
+<h3>methods - sort</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span> <span class="p">,</span><span class="mi">42</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span> <span class="c1">//-n, 0 , n</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// itself is sorted, but.. string</span>
+
+<span class="c1">//trick, mess it</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+
+<span class="c1">//sorted by length</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="p">})</span>
+</code></pre></div>
+<h3>method - concat</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">z1</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span> <span class="c1">//concat(l1,l2,l3);</span>
+<span class="kd">var</span> <span class="nx">z2</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">);</span> <span class="c1">//same result</span>
+<span class="kd">var</span> <span class="nx">z3</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="mi">5</span><span class="p">,[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]);</span> <span class="c1">//like append with extend</span>
+</code></pre></div>
+<h3>method - slice</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">my_array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">//start &amp; end</span>
+</code></pre></div>
+<h3>method - join</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;this&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;line&#39;</span> <span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">my_array</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>compare with python</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="n">result</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">my_array</span><span class="p">)</span> <span class="c">#it will raise TypeError</span>
+<span class="n">result</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">my_array</span><span class="p">))</span>
+</code></pre></div>
+<h3>method - splice</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<span class="k">delete</span> <span class="nx">my_array</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">//set to undefined</span>
+<span class="c1">//from 2, remove 1 element</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> 
+<span class="c1">//from 2, remove 0 element, add 1 element</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">);</span> 
+<span class="c1">//from 2, remove 1 element, add 1 element</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">);</span> 
+<span class="nx">my_array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;two&#39;</span><span class="p">;</span>
+<span class="c1">//from 2, remove 0, add array</span>
+<span class="nx">my_array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;sth else&#39;</span><span class="p">);</span> 
+</code></pre></div>
+<h2>Functions</h2>
+
+<h3>basic functions</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">sayHello</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="s2">&quot;hello&quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">sayHello</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">greeting</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">){</span>
+        <span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">;</span>
+    <span class="p">}</span>  <span class="c1">//没有默认值的写法吗？</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="s2">&quot;hello&quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">sayHello</span><span class="p">();</span>
+</code></pre></div>
+<h3>return value</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">sayHello</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">greeting</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="s2">&quot;hello&quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s2">&quot;Done&quot;</span><span class="p">;</span>
+    <span class="c1">//return name.length;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;end of log&quot;</span><span class="p">);</span> <span class="c1">//will not execute</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3>scope</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//shadowing variable</span>
+<span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">showColor</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">;</span>
+    <span class="nx">shape</span> <span class="o">=</span> <span class="s2">&quot;square&quot;</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">color</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">showColor</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;global shape&quot;</span><span class="p">,</span> <span class="nx">shape</span><span class="p">);</span> 
+<span class="c1">//global can be define inside function..</span>
+</code></pre></div>
+<h3>anonymous functions</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">myFunction</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;fine&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">myFunction</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">myFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;anonymous&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">myFunction</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">callTwice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">targetFunction</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">targetFunction</span><span class="p">();</span>
+    <span class="nx">targetFunction</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">callTwice</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">);</span>
+<span class="nx">callTwice</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hahaha&quot;</span><span class="p">);</span>
+<span class="p">})</span>
+<span class="c1">//useful in debug</span>
+<span class="nx">callTwice</span><span class="p">(</span><span class="kd">function</span> <span class="nx">namedFunction</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hahaha&quot;</span><span class="p">);</span>
+<span class="p">})</span>
+
+<span class="p">(</span><span class="c1">//only way to create a scope</span>
+<span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">;</span>
+    <span class="c1">//...</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;from anon functions&quot;</span><span class="p">);</span>
+<span class="p">})(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h3>examples</h3>
+
+<p>DOM</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">);</span>
+<span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;text_field&#39;</span><span class="p">);</span>
+<span class="c1">//onclick is good, but not good enough</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;bbb&#39;</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">//will override last one..</span>
+<span class="c1">//addEventListener is better</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;action1&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;action2&#39;</span><span class="p">);</span>
+    <span class="nx">input</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2>Object</h2>
+
+<h3>basic</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">kikodo</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;kikodo&quot;</span><span class="p">};</span>
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="c1">//better </span>
+<span class="kd">var</span> <span class="nx">kikodo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;kikodo&quot;</span><span class="p">,</span>
+    <span class="nx">skills</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;ruby&quot;</span><span class="p">,</span> <span class="s2">&quot;js&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;favorite color&quot;</span><span class="o">:</span> <span class="s2">&quot;green&quot;</span>
+<span class="p">};</span>
+<span class="nx">kikodo</span><span class="p">[</span><span class="s2">&quot;favorite color&quot;</span><span class="p">]</span> 
+</code></pre></div>
+<h3>method</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">kikodo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;kikodo&quot;</span><span class="p">,</span>
+    <span class="nx">greet</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, I am &quot;</span><span class="o">+</span> <span class="nx">kikodo</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//not good</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">kikodo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;kikodo&quot;</span><span class="p">,</span>
+    <span class="nx">greet</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, I am &quot;</span><span class="o">+</span> <span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//isn&#39;t ideal</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">(</span><span class="nx">kikodo</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">kikodo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;kikodo&quot;</span><span class="p">,</span>
+    <span class="nx">greet</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello, I am &quot;</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//that&#39;s it</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">;</span>
+<span class="nx">greet</span><span class="p">()</span> <span class="c1">// hello, I am DOMWindow</span>
+
+<span class="kd">function</span> <span class="nx">WhatIsThis</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>  <span class="c1">//-&gt; DOMWindow</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3>apply</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">;</span>
+<span class="nx">greet</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">kikodo</span><span class="p">);</span> <span class="c1">//bund to kikodo...</span>
+<span class="nx">greet</span><span class="p">.</span><span class="nx">call</span><span class="p">({});</span> <span class="c1">//I am undefined</span>
+<span class="nx">greet</span><span class="p">.</span><span class="nx">call</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Amit&quot;</span><span class="p">});</span> <span class="c1">//I am undefined</span>
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">.</span><span class="nx">call</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Amit&quot;</span><span class="p">});</span> <span class="c1">//holly shit, cool</span>
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">.</span><span class="nx">call</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Amit&quot;</span><span class="p">},</span> <span class="s2">&quot;Matt&quot;</span><span class="p">,</span> <span class="s2">&quot;bad&quot;</span><span class="p">);</span>  <span class="c1">// rest strings</span>
+
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">nick</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">jim</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;jim&quot;</span><span class="p">;</span>
+    <span class="nx">greet</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">mood</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">||</span> <span class="s2">&quot;you&quot;</span><span class="p">;</span>
+        <span class="nx">mood</span> <span class="o">=</span> <span class="nx">mood</span> <span class="o">||</span> <span class="s2">&quot;good&quot;</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello,&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; I am &quot;</span> 
+            <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; and I am in a &quot;</span> <span class="o">+</span> <span class="nx">mood</span> <span class="o">+</span> <span class="s2">&quot; mood!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">jim</span><span class="p">.</span><span class="nx">greet</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">nick</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Matt&quot;</span><span class="p">,</span> <span class="s2">&quot;bad&quot;</span><span class="p">]);</span>  <span class="c1">//array!</span>
+<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Matt&quot;</span><span class="p">,</span> <span class="s2">&quot;bad&quot;</span><span class="p">];</span>
+<span class="nx">jim</span><span class="p">.</span><span class="nx">greet</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">jim</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</code></pre></div>
+<h3>prototype1</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">personPrototype</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Anonymous&quot;</span><span class="p">;</span>
+    <span class="nx">greet</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">mood</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">||</span> <span class="s2">&quot;you&quot;</span><span class="p">;</span>
+        <span class="nx">mood</span> <span class="o">=</span> <span class="nx">mood</span> <span class="o">||</span> <span class="s2">&quot;good&quot;</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello,&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; I am &quot;</span> 
+            <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; and I am in a &quot;</span> <span class="o">+</span> <span class="nx">mood</span> <span class="o">+</span> <span class="s2">&quot; mood!&quot;</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">species</span><span class="o">:</span> <span class="s2">&quot;Homo Sapien&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Person</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>  
+<span class="c1">//constructor, Capitalized as convention</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>  <span class="c1">//default return this if no return..</span>
+<span class="p">}</span>
+
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">personPrototype</span><span class="p">;</span> <span class="c1">//it knows where prototype is </span>
+
+
+<span class="nx">kikodo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&quot;kikodo&quot;</span><span class="p">)</span> 
+<span class="c1">//new: this !-&gt; windows, this -&gt;Person</span>
+<span class="c1">//new: __proto__ -&gt; personPrototype</span>
+<span class="c1">//new: [name, __prototype__]</span>
+<span class="nx">kikodo</span><span class="p">.</span><span class="nx">greet</span><span class="p">()</span>
+</code></pre></div>
+<h3>prototype2</h3>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">species</span> <span class="o">=</span> <span class="s2">&quot;Human&quot;</span><span class="p">;</span>  <span class="c1">//change things..</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">favoriteColor</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="c1">//personPrototype.favoriteColor = &quot;red&quot;; //same?</span>
+
+<span class="cm">/* what happen if i forgot to add new */</span>
+<span class="nx">kikodo</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&quot;kikodo&quot;</span><span class="p">);</span> <span class="c1">//-&gt; windows.name == &quot;kikodo&quot;</span>
+</code></pre></div>
+</div>
+
+<div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'allmonday'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</div>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

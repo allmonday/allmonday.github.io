@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>kikodo</title>
+        <link href="http://cdn.staticfile.org/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/highlight.js/8.0/styles/default.min.css" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-scrolltofixed.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            console.log('hi');
+            $('.header').scrollToFixed();
+          })
+        </script>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="content-container">
+            <div class="content-sidebar" style="background: #eee;" >
+              <div class="content-sidebar-header">
+                <a href="/">
+                <img src="/images/avatar.JPG" class="avatar" alt="">
+                </a>
+              </div>
+              <div class="header">
+                <h1 class="title text-center"><a href="/">tangkikodo <span>python,js</span></a></h1>
+              </div>
+              </div>
+            <div class="content-mainbar">
+              <h1>setTimeout inside for loop</h1>
+<p class="meta">21 Nov 2014</p>
+
+<code>javascript</code>
+
+<code>async</code>
+
+
+<div class="post">
+<h2>for loop 中的异步操作</h2>
+
+<p>先上一个代码</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span> <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>会输出什么？是 1,2,3,4 .. 吗？ 输出的是 10, 10, 10, 10 ..</p>
+
+<p><a href="http://stackoverflow.com/questions/5226285/settimeout-in-a-for-loop-and-pass-i-as-value">stackoverflow 上的回答</a></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">If you don&#39;t do something like this (and there are other variations on this same idea), then each of the timer handler functions will share the same variable &quot;i&quot;. When the loop is finished, what&#39;s the value of &quot;i&quot;? It&#39;s 3! By using an intermediating function, a copy of the value of the variable is made. Since the timeout handler is created in the context of that copy, it has its own private &quot;i&quot; to use.
+---------
+(大意) 每个timeout 的 handler会共享同一个i, 当循环结束的时候, i的值是3。
+使用一个闭包保存 i 的当前值, timeout 就会使用这个闭包中的 i。
+</code></pre></div>
+<p>方法有以下几种 </p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span> <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+        <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+
+<span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span> 
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;async&#39;</span><span class="p">);</span>
+
+<span class="nx">async</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>
+</div>
+
+<div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'allmonday'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</div>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

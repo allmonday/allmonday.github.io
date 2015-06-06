@@ -1,0 +1,67 @@
+---
+layout: post
+title:  "一周好货整理"
+categories: jekyll update
+tags: 干货
+---
+
+## https
+- [Nginx 下部署 HTTPS 与安全调优](https://phphub.org/topics/206) `startup news`
+- [听说你要做网站?](http://www.jianshu.com/p/aa1294d879fc)
+	- ```
+	server {
+	    listen 80;
+	    location /site {
+	        proxy_pass http://localhost:8080;
+	    }
+
+	    location /blog {
+	        proxy_pass http://localhost:9090;
+	    }
+	}
+	```
+	- 浏览器总是连接 80 端口 (HTTPS 除外)，但是你应该知道标准的 TCP 连接监听的是一个端口（在这个例子是 80），而真正传送数据的是另外一个随机的高位端口（比如 54321）。如果每个用户都占用 80 端口传数据的话那就麻烦了。
+	- Response 中的 `Content-Type`: 你应该发现有时候你打开一个链接会显示页面，有时候却会弹出另存为的对话框。决定这个行为的就是这个 Header，其值是一个 `MIME Type`。
+
+- [60+ Cheatsheet Collection for Full Stack Developers](http://www.idiotinside.com/2014/09/29/60-cheatsheet-collection-for-full-stack-developers/)	
+- [cheatography](http://www.cheatography.com/) `cheat 速查表`
+- [RESTFUL](http://photo.weibo.com/1614282004/wbphotos/large/mid/3762025941300529/pid/6037fd14gw1ekzbsxm8p3j216u0w6k09)
+- [HTTP下午茶](http://happypeter.github.io/tealeaf-http/)
+- [网页设计简史](https://weavi.com/28458)
+- [DNS基本概念](http://dudns.baidu.com/intro.html)
+
+## python
+- [用tornado实现web界面爬虫](https://tydus.org/blog/tag/tornado) `gen.coroutine 大爱` `已阅`
+
+## 艺术细胞
+
+- [Sketch 3 Tutorials](http://leveluptuts.com/tutorials/sketch-3-tutorials)
+
+## leancloud
+
+- [leancloud 云代码](https://leancloud.cn/docs/cloud_code_guide.html)
+	- 云后台
+	- 提供hook, 在数据存取前后执行自定义操作(比如使用mailgun发送邮件)
+	- 部署非常方便
+
+## javascript
+
+- [Material UI for AngularJS](https://material.angularjs.org/#/demo/material.components.button)
+- [ng2048](http://www.ng-newsletter.com/posts/building-2048-in-angularjs.html) `要读完哦！`
+- [stream-handbook](https://github.com/YinChangSheng/stream-handbook/blob/master/README.md)
+- [Angular JS best coding practice – Every coder should follow](http://www.codingeek.com/angularjs/angular-js-best-coding-practice-every-coder-should-follow/)
+- [js风格指南](https://github.com/airbnb/javascript)
+
+## 计算机基础
+- [所有值得一读的计算机论文](https://github.com/papers-we-love/papers-we-love/)
+- [斯坦福haskell课程](http://www.scs.stanford.edu/11au-cs240h/notes/)
+- [visuAlgo](http://visualgo.net/) `推荐`
+- [Structure and Interpretation of Computer Programs](http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/)
+- [Structure and Interpretation of Computer Programs - lisp](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html)
+- [How to Design Programs, Second Edition](http://www.ccs.neu.edu/home/matthias/HtDP2e/index.html)
+
+
+## 剧集
+
+- [硅谷](http://www.verycd.com/entries/791438/)
+- [it狂人](http://www.verycd.com/entries/510128/)

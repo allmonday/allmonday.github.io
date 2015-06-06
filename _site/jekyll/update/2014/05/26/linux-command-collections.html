@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>kikodo</title>
+        <link href="http://cdn.staticfile.org/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/highlight.js/8.0/styles/default.min.css" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-scrolltofixed.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            console.log('hi');
+            $('.header').scrollToFixed();
+          })
+        </script>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="content-container">
+            <div class="content-sidebar" style="background: #eee;" >
+              <div class="content-sidebar-header">
+                <a href="/">
+                <img src="/images/avatar.JPG" class="avatar" alt="">
+                </a>
+              </div>
+              <div class="header">
+                <h1 class="title text-center"><a href="/">tangkikodo <span>python,js</span></a></h1>
+              </div>
+              </div>
+            <div class="content-mainbar">
+              <h1>linux commands tips</h1>
+<p class="meta">26 May 2014</p>
+
+<code>卧槽施工中</code>
+
+
+<div class="post">
+<h2>shell</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">cat /etc/shells
+echo $SHELL
+chsh -s /bin/bash
+chsh -s /bin/zsh
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">for i in 1 2 3 4 5
+    do
+        echo &quot;welcome $i times&quot;
+    done
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">.bash_profile   #if things doesn&#39;t work in .bashrc, check here..
+export thing=value   #should be written in .bashrc 
+</code></pre></div>
+<h2>tar</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">tar -zcvf file.tar.gz filedirectory 
+tar -zxvf file.tar.gz  
+</code></pre></div>
+<p><a href="http://www.cnblogs.com/jyaray/archive/2011/04/30/2033362.html">参考</a></p>
+
+<h2>ls</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ls -alh  #30000000 -&gt; 30M
+</code></pre></div>
+<h2>awk</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">awk &#39;!a[$0]++&#39; file   #remove duplicated lines
+awk &#39;NR!=1{print &gt; $6}&#39; target.txt   #折分文件
+awk &#39;!a[$0]++&#39; file   # 去除重复行
+</code></pre></div>
+<h2>sort</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sort -R input | head -n 100 &gt;output   #select random lines from a file
+</code></pre></div>
+<h2>vim</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ctrl + w + x   #交换窗口
+</code></pre></div>
+<h2>python - lib</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#sklearn 安装走投无路时
+pip3 install scikit-learn
+pip3 install git+https://github.com/scikit-learn/scikit-learn.git
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">#gensim 的3.3版本需要从github上安装
+git clone git@github.com:piskvorky/gensim
+</code></pre></div>
+<h2>GIT</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">git config --global color.ui auto    #色彩
+</code></pre></div>
+<h2>mongo copy &amp; past</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">set -x                                                                                      
+for i in &quot;products&quot; &quot;brandSwitches&quot;                                                         
+do                                                                                          
+    mongo etl-dev --eval &quot;db.$i.drop()&quot;                                                     
+    mongoexport -h 192.168.1.202 -d dev -c $i | mongoimport -d etl-dev -c $i                
+done                                                                                        
+</code></pre></div>
+</div>
+
+<div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'allmonday'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</div>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,74 @@
+---
+layout: post
+title:  "JQuery"
+categories: jekyll update
+tags: 未完待续
+---
+
+##Include jQuery in a Project
+```javascript
+function myCode() {
+	$(".warning").hide().show("slow");
+}
+$(document).ready(myCode);
+```
+
+```javascript
+var myCode = function () {
+	$(".warning").hide().show("slow");
+}
+$(document).ready(myCode);
+```
+
+```javascript
+$(document).ready(function () {
+	$(".warning").hide().show("slow");
+});
+```
+
+```javascript
+$(function () {
+	$(".warning").hide().show("slow");
+});
+```
+
+```javascript
+//put scripts at the bottom of body element
+$(".warning").hide().show("slow");
+```
+
+## jquery-succinctly
+
+```javascript
+	$('a').text('jquery').attr('href', 'http://www.jquery.com');
+	$('a').text('jquery').attr('href', 'http://www.jquery.com').appendTo('body');
+
+	// ready and load
+	$(function () {
+		alert('hussh');
+	});
+	$(window).load(function () {
+		alert('eureka');
+	});
+
+	// end()
+	$('#list')
+		.find('> li')
+			.filter(':last')
+				.addClass('last')
+			.end()
+			.find('ul')
+				.css('background', '#ccc')
+				.find('li:last')
+					.addClass('last')
+				.end()
+			.end()
+		.end()
+		.find('li')
+			.append('i am last')
+
+```
+
+## jsfiddle 学习代码
+
+{% jsfiddle jqbb5ghe result,js,html %}

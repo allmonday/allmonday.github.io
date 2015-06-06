@@ -1,0 +1,31 @@
+---
+layout: post
+title: 收集关注博客&RSS
+tags: 整理好挂在左边
+---
+
+## 聚合
+
+- tydus [https://tydus.org/](https://tydus.org/)  `真心牛`
+- coolshell [http://www.coolshell.cn](http://www.coolshell.cn) `耗子叔`
+- 简明现代魔法 [http://www.nowamagic.net/](http://www.nowamagic.net/) `moe`
+- hacks news [https://news.ycombinator.com/news](https://news.ycombinator.com/news) `paul`
+- startup news [http://news.dbanotes.net/](http://news.dbanotes.net/) `fenng`
+- more than vimer [http://vimer.me/](http://vimer.me/)
+
+## 前端
+
+- 淘宝前端 [http://ued.taobao.org/blog/](http://ued.taobao.org/blog/)
+- 腾讯alloyTeam [http://www.alloyteam.com/](http://www.alloyteam.com/)
+- css-tricks [http://css-tricks.com/](http://css-tricks.com/) `必看`
+- John Resig [http://ejohn.org/category/blog/](http://ejohn.org/category/blog/)
+- 笨笨 [http://www.benben.cc/](http://www.benben.cc/)
+
+## 简书
+
+- [jagttt](http://www.jianshu.com/users/emNpEA/latest_articles)
+
+
+## python
+
+- [pyzh](http://pyzh.readthedocs.org/en/latest/index.html)

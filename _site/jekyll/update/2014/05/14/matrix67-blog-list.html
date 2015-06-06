@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>kikodo</title>
+        <link href="http://cdn.staticfile.org/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="http://cdn.staticfile.org/highlight.js/8.0/styles/default.min.css" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-scrolltofixed.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            console.log('hi');
+            $('.header').scrollToFixed();
+          })
+        </script>
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="content-container">
+            <div class="content-sidebar" style="background: #eee;" >
+              <div class="content-sidebar-header">
+                <a href="/">
+                <img src="/images/avatar.JPG" class="avatar" alt="">
+                </a>
+              </div>
+              <div class="header">
+                <h1 class="title text-center"><a href="/">tangkikodo <span>python,js</span></a></h1>
+              </div>
+              </div>
+            <div class="content-mainbar">
+              <h1>Matrix67 博客列表</h1>
+<p class="meta">14 May 2014</p>
+
+
+<div class="post">
+<h2>Matrix67 博文</h2>
+
+<p>一页页翻很不方便,用了个简单的脚本抓了下来, 大神的文章有关nlp的内容相当精彩,推荐！！！   </p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">urllib</span>  
+<span class="kn">import</span> <span class="nn">re</span>  
+
+<span class="n">HOMEPAGE</span><span class="o">=</span><span class="s">&#39;http://www.matrix67.com/blog/&#39;</span>  
+
+<span class="k">def</span> <span class="nf">findTitle</span><span class="p">(</span><span class="n">page</span><span class="p">):</span>  
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&#39;&lt;h1.*&lt;a href=&quot;(.*)&quot; rel=&quot;bookmark&quot;&gt;(.*)&lt;/a&gt;&#39;</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="n">m</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span>  
+
+<span class="k">def</span> <span class="nf">findNextPage</span><span class="p">(</span><span class="n">page</span><span class="p">):</span>  
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;&lt;a href=</span><span class="se">\&quot;</span><span class="s">(.*)</span><span class="se">\&quot;</span><span class="s">.*&gt;OLDER&#39;</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>  
+        <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="k">return</span>   
+
+<span class="k">def</span> <span class="nf">crawl</span><span class="p">(</span><span class="n">URL</span><span class="p">):</span>  
+    <span class="n">content</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  
+    <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">findTitle</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>  
+        <span class="k">print</span> <span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+        <span class="k">print</span> <span class="n">info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">nextURL</span> <span class="o">=</span> <span class="n">findNextPage</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>  
+    <span class="k">print</span> <span class="n">nextURL</span>  
+    <span class="n">Crawl</span><span class="p">(</span><span class="n">nextURL</span><span class="p">)</span>  
+
+<span class="n">Crawl</span><span class="p">(</span><span class="n">HOMEPAGE</span><span class="p">)</span>  
+</code></pre></div>
+<p>vim editor command</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">:g/^/+1m-1  #交换奇偶行
+:g/^http/+1m-1
+:%s/\(^.*\)\n\(^.*\)/\1 \2/g 合并奇偶数行
+</code></pre></div>
+<p><a href="http://www.matrix67.com/blog/archives/5941">在2048里能够得到的最大的数是多少？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5919">趣题：2014年INMO中的一个问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5910">多边形外角和等于 360° 的一种直观解释  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5900">趣题：用 k × 1 的矩形覆盖 n × n 的正方形棋盘  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5883">趣题：圆中的两个相切的半圆  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5881">杨辉三角中的自然底数 e  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5865">保加利亚单人纸牌游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5850">通信复杂度问题：利用特殊机器判断公共元素的存在性  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5822">Thue-Morse 序列与免平方字符串  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5562">立方和公式的一个组合数学证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5556">连分数的一个性质以及它的一个组合解释  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5550">趣题：免分割线的多米诺骨牌覆盖方案  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5546">趣题：Kontsevich的单人跳棋游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5523">趣题：庄家的秘密序列  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5521">两两接触的等粗且无限长的圆柱体  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5515">怎样把一个钝角三角形分成若干个锐角三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5503">一个与球内接多面体体积有关的问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5495">趣题：把比萨分成若干等份使得至少有一份不含边  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5480">数学之美：Marden定理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5453">线性代数的妙用：怎样在Windows画图软件中实现28度旋转？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5448">动画演示：Euler线定理的直观理解  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5424">经典证明：为什么n=5时不存在Langford数列？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5418">经典证明：为什么n=5时不存在Leech树？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5409">趣题：用单位圆覆盖平面上的10个点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5406">趣题：上哪儿找一个含60度的三角形？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5398">趣题：不用三角函数求出∠BAC的度数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5387">趣题：如何在数据库中秘密地查询隐私数据  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5382">趣题：设计多边形围墙使得对于某一观察点所有的墙都不完全可见  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5362">趣题：不用乘法实现 (1 + x + x^2 + x^4) mod 2233393  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5342">通信复杂度问题：确定双方手中所有数的中位数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5330">UyHiP趣题：用最少的称重次数验证硬币的重量  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5321">趣题：斜边上的动点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5313">趣题：同时等分三角形周长和面积的直线  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5296">趣题：一个n位数平均有多少个单调区间？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5293">趣题：平行线之间的正方形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5285">Borromean rings的另一个离奇的性质  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5270">经典证明：任意三角形都能被分成n≥4个等腰三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5221">为什么Fibonacci数列相邻两项之比会趋于0.618？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5205">IMO2010趣题：用有限次操作得到2010^(2010^2010)枚硬币  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5190">网络流和棒球赛淘汰问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5189">趣题：一个与含60度的三角形有关的性质  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5165">趣题：测量两根木棒长度的更优方案  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5167">趣题：证明边权递增的路径始终存在  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5182">趣题：Alice和Bob的等值交易  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5170">2月14日：送给你的礼物  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5152">Hofstadter的非线性递推数列  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5140">五个有趣的拓扑变换问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5100">跨越千年的RSA算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5094">经典证明：Ptolemy定理的无字证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5083">难倒犹太人的五个数学问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5077">空间想象能力挑战：把左图连续地变换为右图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5070">趣题：证明所有乘积的总和与分拆的方式无关  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5063">趣题：由0和1构成的虫子  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5058">趣题：构造更大的Brunnian link  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5044">互联网时代的社会语言学：基于SNS的文本数据挖掘  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5040">贴着另一枚硬币旋转一周则自身转了两周：不同的解释方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5036">IMO2012趣题：带有说谎的猜数游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5013">几个精彩的数论问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5004">趣题：构造多边形使得过边界上某一点的任意直线均能等分面积  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4984">经典证明：几乎所有有理数都是无理数的无理数次方  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4971">趣题：把矩形分割为面积相同但形状各不相同的小矩形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4966">趣题：八根并排放置的水管  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4955">正多边形的滚动与旋轮线下方的面积  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4930">Turing机、人工智能以及我们的世界  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4922">趣题：填写两个声母互相颠倒的词  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4911">2月14日：送给你的礼物  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4897">经典证明：星际争霸是NP-hard的  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4891">Fibonacci数列性质的组合证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4881">12个经典的行程问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4870">漫话中文自动分词和语义识别（下）：句法结构和语义结构  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4858">趣题：这些词有什么共同点？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4831">趣题：用最少的点挡住所有可能的反射路径  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4812">对角线方法之后的故事  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4793">趣题：舞台里的狮子  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4790">2011年度最变态的迷宫难题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4780">经典证明：不断把凹的部分翻出来,总能把凹多边形变凸吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4769">汉字地图第二版  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4756">如此保证选举公正性能成吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4750">趣题：选出最多的大小为奇数的子集,使得两两的交集大小都是偶数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4746">趣题：所有人手上的糖数最终会变得一样多  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4742">用生命游戏来模拟生命游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4731">经典证明：能否在平面上写下不可数个不相交的Y？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4722">如果对Heron公式求导的话  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4717">趣题：只用一把带有两条平行边的直尺作图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4713">用抛物线筛选质数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4698">UyHiP趣题：按照盒子的三边长之和来计费有没有漏洞？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4690">趣题：只允许加倍操作的水桶倒水问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4675">无聊小制作：“数词+非数词+数词+非数词”的出现频数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4649">难倒犹太人的11个数学问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4644">趣题：从1到4000中各位数字之和能被4整除的有多少个？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4631">趣题：旋转桌子避免灯泡全亮  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4619">无聊小研究：各种文体中出现频率最高的四字词  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4603">千万别学数学：最折磨人的数学未解之谜（二）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4595">经典证明：Conway的士兵  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4592">趣题：2n位平衡01串平均有多少个平衡前缀？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4581">无聊小制作：电影的颜色  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4570">再谈Julia集与Mandelbrot集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4560">最难的组合游戏：To Knot or Not to Knot  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4556">八皇后问题算什么,来看看无穷皇后问题吧  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4548">又一种证明素数无穷多的方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4545">经典证明：等边三角形内一点到各顶点的距离长可构成一个三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4534">生成函数的妙用：平均抛掷多少次硬币才会出现连续两个正面？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4525">趣题：能否在等边三角形点阵中画一个正方形？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4520">数学冷知识：不断取英文表达的字符数,最后总会得到数字4  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4511">IMO2011趣题：总存在一条将会遍历所有点的直线  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4491">千万不要迷信规律：大反例合集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4485">趣题：不用相似怎么办？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4480">盯着结论看,直到它变得显然成立为止  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4470">今天才知道,空壳星球的内部是没有重力的  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4459">趣题：连接多个数字串时怎样避免歧义？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4453">经典证明：Cantor集中的元素两两相加可以遍历 </a><br>
+<a href="http://www.matrix67.com/blog/archives/4447">几个令人惊叹的函数图像  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4439">锈规作图续篇：单用一个只能画单位圆的圆规如何作线段中点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4429">趣题：公司应该雇用多少员工？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4424">巧解定积分：用定积分来求解定积分  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4418">视频：Steiner问题的肥皂膜解法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4413">趣题：和为90度的一组锐角,正弦值之和一定大于1  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4400">史上最Geek的桌游：ERGO  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4372">44个精彩的物理趣题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4365">或许你从小就一直在思考的两个算术问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4361">趣题：老鼠与毒药问题的推广  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4349">等待的时间比你想象的更久  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4340">数学之美：垂心的各种优雅的性质  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4331">幸福结局问题,以及一个幸福的结局  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4324">Kolakoski序列：我们知道的还是太少  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4318">趣题：不动点与线性代数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4313">蛋疼研究之单词等式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4306">趣题：八等分一张圆饼最少需要多少刀？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4300">视频：How Round is Your Circle 各种神奇的几何构造  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4294">随记：我们需要怎样的数学教育？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4279">Arrow不可能性定理：独裁是唯一完美的选举制度  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4270">UyHiP趣题：如果每个人都随大流,结果会怎样？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4263">UyHiP趣题：拉灯游戏总有解吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4253">用事实告诉你高斯有多牛B  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4248">趣题：能否把三维空间分成无穷个圆？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4238">比Conway生命游戏更酷的Langton蚂蚁  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4236">数学家集体相,看你能认出多少大牛来  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4228">UyHiP趣题：限制最苛刻的选票统计程序  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4212">漫话中文自动分词和语义识别（上）：中文分词算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4191">Fitch悖论：我们已经掌握了所有的知识  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4183">另类称球趣题：验证砝码所标克数的正确性  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4169">漫话折纸几何学  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4163">量纲法竟然还能这样用  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4159">用相同的面组成多面体,凸多面体不一定会更大  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4152">用正方形纸片折出等边三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4139">情人节特献：有心之函数必然就有分手函数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4131">除了正多面体,骰子还可以做成哪些形状？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4125">趣题：随机折断的木棒  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4120">超级游戏悖论：千万别说“让我们来玩一个游戏”  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4110">兔年快乐,送大家分形兔子一只  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4103">集数学与艺术于一体的几何幻方  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4092">蛋疼研究之怎样刷屏最快？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4078">出租车几何学：一个全新的几何世界  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4071">不用怀疑了,我已经写程序验证过了  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4064">趣题：两步猜出多项式的各项系数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4035">千万别学数学：最折磨人的数学未解之谜（一）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4032">19有什么特别的地方？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4025">生日悖论外传：任取两个人生日相同的概率是50%  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4018">趣题：两两间的距离都是整数的点集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4009">点燃绳子究竟还能测出哪些时间？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/4000">徒手画分形图形,此MM乃神人也！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3985">神秘常量复出！用0x077CB531计算末尾0的个数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3979">N体问题的30个周期性解  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3970">把几何定理画成油画  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3965">最帅的Menelaus定理证明方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3951">原来函数也是有平方根的  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3948">1 4 6 4 1不是唯一答案,我们还有Rascal三角  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3944">公平分割问题：均衡分割与免嫉妒分割  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3936">趣题：平均要取到第几个随机数才会让序列第一次下降  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3930">趣题：最“悬”的悬挂方式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3918">神一般的定理,以及神一般的证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3913">不用编程也能制作分形图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3909">你正在函数图像的最大值上  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3892">可能是数学公式最多的图了  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3895">《新知客》趣题专栏 2010.11  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3885">There is always a bigger fish  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3878">趣题：面积为1的凸多边形总能放进一个面积为2的矩形里  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3870">Conway常数是怎么得来的？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3857">比乘法更大的是乘方,比乘方更大的是什么？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3851">画圈圈和画叉叉的区别  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3840">能平铺平面,却不能周期性地平铺平面  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3832">趣题：三角形内切圆的一个性质  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3819">趣题：用树来表示数（已更新）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3803">Cramer悖论：线性代数的萌芽  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3795">我刚才说的是谎话  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3791">《新知客》趣题专栏 2010.10  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3771">UyHiP趣题：100囚犯之黑白手套  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3763">Morpion Solitaire的新纪录  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3753">指数级增长毕竟是指数级增长  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3748">来自圣经的算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3743">数学不只是一堆公式,正如天文学不只是一堆望远镜  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3718">谬证大全：1+1≠2的n种可能  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3705">趣题：过纸张外的一点作直线  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3682">那些神秘的数学常数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3677">《新知客》趣题专栏 2010.09  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3666">视频推荐：WORDS  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3658">趣题：半径相等的半圆和圆 内接正方形的面积之比  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3638">用数学解赌博问题不稀奇,用赌博解数学问题才牛B  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3630">100个囚犯和灯泡的那些事儿（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3618">100个囚犯和灯泡的那些事儿（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3605">趣题：寻找隐藏的公共秘密  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3596">酷图分享：I ❤ Mathematics  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3570">Futurama S06E10中的数学问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3565">切片引理和两个意想不到的应用  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3549">《新知客》趣题专栏 2010.08  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3547">献给所有单身的数学Geek  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3537">选举制度的学问  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3520">新闻二则：P≠NP有望得证 魔方问题告破  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3513">不走寻常路：寻找线段的中点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3507">惊人的答案：平均要取多少个(0,1)中的随机数才能让和超过1  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3505">Boolean Hair Logic  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3492">别用 pi 了,用 tau 吧！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3485">《新知客》趣题专栏 2010.07  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3476">推荐视频：Portal 2中的新元素  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3470">六道黑白棋占角谜题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3448">火柴棒搭成的几何世界  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3427">连杆系统：比你想象中的更强大  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3422">玩转内接多边形（六）：任意凸多边形内均存在内接正方形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3412">玩转内接多边形（五）：任意多边形内均存在内接菱形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3389">中文自我描述句  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3385">趣题：和有可能为1的区间分布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3376">日文中的数学名词和计算机名词都是什么样的？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3357">如果我说的是假话,那么我说的是假话  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3331">用一张日落照片估算出地球的半径  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3314">一探汉语中的文字幻方  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3306">Manufactoria：非常好玩的自动机编程游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3289">习一文一乐,便入安宁万世……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3281">史上最牛的Crossword  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3243">Which Way Did the Bicycle Go 趣题选（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3265">e的近似表达：一个令人惊讶的数字游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3230">Futurama 5&#215;10 &#8211; The Farnsworth Parabox  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3222">“爱的方程式3D版”出Tee了！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3210">用选择公理来预测未来  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3201">HATETRIS：故意跟你作对的俄罗斯方块游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3186">- 1 + 2^7 = 127 这样的算式有多少个？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3172">Which Way Did the Bicycle Go 趣题选（中）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3155">如果你的计算器上没有pi……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3113">Which Way Did the Bicycle Go 趣题选（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3120">Mathematica真的什么都能求出来吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3105">Math Horizons的愚人节笑话：一个奇妙的分式方程  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3087">iPad上的数学软件介绍与畅想  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3072">推荐视频：关于大脑的思维方式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3066">如此排序能成吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3059">玩转内接多边形（四）：登山引理 一个无关的问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3039">（愚人节玩笑）历史上最奇怪的圆周率计算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3035">玩转内接多边形（三）：任意凸多边形内均存在内接菱形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3025">Sierpinski-Mazurkiewicz悖论：一加一还是等于一  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3011">玩转内接多边形（二）：任意多边形内均存在内接矩形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/3004">推荐视频：大自然中的数学  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2995">玩转内接多边形（一）：任意多边形内均存在内接正三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2976">什么是算法：如何寻找稳定的婚姻搭配  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2946">也说Pizza问题：分享几个漂亮的证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2926">Happy Pi Day！一起来挑战俄罗斯方块圆周率版  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2943">The Most Beautiful Equation (Remix)  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2935">公用品悲剧：污染环境损人损己人尽皆知 为何危机依然存在？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2907">用Mathematica寻找最相似的汉字  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2904">经典证明：1+2+3+&#8230;+(n-1) = C(n,2)  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2896">趣题：三角形两顶点在直线上滑动时第三点的轨迹  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2882">原创小工具：Idea Generator  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2875">推荐视频：纸牌穿玻璃魔术揭密  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2866">一张无法正确缩放的诡异图片  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2856">汉字版Alphametic征集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2839">奇妙的心电图数列  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2830">如何构造一个平滑的最大值函数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2817">经典智力题：自行车往哪个方向行驶？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2810">满足xy恰有k个约数的(x,y)所组成的图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2803">微观经济学之定价策略（下）：两部分定价与捆绑销售  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2799">I LOVE YOU IN EVERY DIMENSION  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2784">趣题：用两个2算出一个5  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2774">微观经济学之定价策略（上）：价格歧视  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2762">趣题：数轴上的潜水艇  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2753">利用阶乘因子数公式证明素数无穷多  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2733">分形图形：千伏高压下的湿木板  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2740">UyHiP趣题：自然数划分中的幂关系  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2728">从全唐诗对偶字中提取字义网络图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2723">Self-Description  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2712">瓶魔悖论与不完全信息  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2700">经典证明：用信息熵证明素数无穷多  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2691">Geek的收藏：印满圆周率的纸钱包  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2671">10个精彩的智力问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2660">一个有趣的智力题：机智巧妙的楼顶逃生  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2653">算法问题征解：怎样生成随机数而不借助任何工具？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2649">天书般的高IQ智商测试  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2628">物理直觉与数学证明：凸多边形的平衡点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2621">选C的概率真的是最高的！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2615">令人敬畏的数学：整系数多项式的根在复平面上的图像  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2605">贪心算法的一个出人意料的应用  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2599">Runge现象：多项式插值不见得次数越高越准确  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2591">《欺诈游戏》中的少数决游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2586">人生就是一个接一个的杯具  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2571">大力普及“他妈的”有助于语言交流  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2552">假如P=NP,世界将会怎样？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2546">经典证明：任何可数集都含有不可数个嵌套子集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2538">趣题：某个经典结论的妙用  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2517">概率论教你说谎：直觉思维的科学解释  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2494">Buffon投针实验：究竟为什么是pi？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2469">THERE IS A FAULT IN REALITY!  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2468">Hey Jude歌词流程图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2453">把[0,2]分割为可数个部分 然后拼成全体实数集R  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2447">趣题：货架上的听装可乐  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2442">为什么f&#8217;(x)与f(x)/x的交点恰为后者的极值点？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2434">趣题：正方形的边长是多少？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2419">趣题：连续函数上的水平线段  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2411">为什么人们往往不愿承担风险？风险规避的科学解释  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2409">趣题：哪个像素点坏了？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2397">零点定理的奇妙应用：平分面积的直线  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2390">趣题：以无理点为圆心的圆周上最多有多少个有理点？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2383">空间想象能力挑战：立方体相邻面两对角线的最近距离？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2374">按照盒子的三边长之和来计费有没有漏洞？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2368">Google在MIT发布的难题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2359">趣题：平面图三染色的零知识证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2348">最近几天碰到的几个有趣的问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2339">趣题：构造骰子使其与两个标准骰子等价  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2324">余弦定理的三个证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2308">图表的重要性：Anscombe的四组数据  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2304">精美组图：Found Functions  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2256">经典证明：一组凸集中任三个的交非空,则所有凸集的交非空  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2247">爱情究竟是什么？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2241">Scarky：发布你自己的OI/ACM题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2238">祝大家七夕情人节快乐  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2227">勾股定理的两个物理证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2212">聆听排序算法的声音  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2207">留心观察身边的事物：生活中的FAIL  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2199">Pick定理的几个出人意料的应用  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2194">趣题：用松了的圆规作给定一端点的指定长度线段  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2188">Image Functions：在线绘制颜色分布图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2181">这个图形有什么牛B的地方？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2172">证明集合可数的简便方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2168">趣题：随机选取两个无穷大的图,求两者相同的概率  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2163">地球上惊现Sierpinski贝壳？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2157">圆环面积公式与勾股定理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2134">俄罗斯方块可以永无止境地玩下去吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2116">有限域的二次剩余与x^2+y^2=c的解的个数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2095">经典证明：推箱子游戏所需步数可达指数级  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2085">一个实际问题：如何放本本使得其占地面积最小？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2078">趣图一张：《几何原本》拓扑结构图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/2031">PSP上的两个时间类动作解谜游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1994">Wolfram&#124;Alpha彩蛋大合集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1979">趣题：存在三个Fibonacci数a,b,c使得a^2+b^2=c^2吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1972">趣题：构造整数域上的函数f使得f(f(n))等于-n  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1954">网友来信：另类线段等分法与距离平方和问题的扩展  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1942">我所见过的最酷的排序算法演示  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1947">牛题：等边三角形内接圆上一点到三顶点距离平方和不变  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1939">所有进制都是10进制  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1928">趣题：如何用尺规作图将圆面积N等分  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1923">等分阴阳图的N种方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1914">为什么把敌人打败了=打敌人,但把肚子笑疼了≠笑肚子？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1900">趣题：选取最多的子集使得任两子集恰有一个公共元素  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1890">记09年北大ACM校内赛  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1882">最好的生日礼物：Wolfram&#124;Alpha今日发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1875">世界之大无奇不有：Situation Puzzle大合集（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1871">世界之大无奇不有：Situation Puzzle大合集（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1866">趣题：图中哪里有问题？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1850">（召集）你能想到的最奇妙的算法题是什么？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1846">递归与自我指涉标识牌Top 5  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1825">经典证明：列表染色与可选择数（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1821">三个关于数绵羊的故事……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1810">趣题：均匀分布且和为常数的n个变量  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1798">经典证明：列表染色与可选择数（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1788">漫话科学哲学：什么是科学解释？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1768">趣题：寻找策略使得总有一人猜出他背上的数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1763">漂亮的排序算法：7种排序算法的内存状态演示  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1749">我目前所见过的最难的IQ测试题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1738">经典证明：任何正整数着色方案中都含任意长的单色等差数列  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1727">数学无处不在：语言、文字与数学  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1705">（号外）两个期待已久的创意动作解密游戏已发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1696">IBM Ponder This史上最难谜题：给出谜底猜谜面  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1684">趣题：对全体正整数红蓝二着色使之不含单色无穷等差数列  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1678">经典证明：素数无穷多的拓扑学证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1671">一道智力题：世上最毒的毒药  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1657">（愚人节玩笑）史上最牛充分条件分析器测试版发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1650">趣题：制作一个可以循环播放的磁带  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1629">经典证明：几个利用概率法进行证明的例子  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1625">“周末不工作”周期函数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1611">晒论文：表示重复意义的虚词比较  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1598">追Geek MM小工具：IOCCC情书生成器v0.1  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1591">Harvard-MIT Mathematics Tournament 2009: Guts Round  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1585">分形生活之Koch雪花小蛋糕  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1574">从“迷失的8”到生成函数：小数展开的秘密  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1569">Happy pi day! 祝所有网友节日快乐  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1561">（组图）模式、分形与混沌：数学无处不在  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1555">趣题：用一副七巧板拼出带有三个洞的图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1547">实分析中的反例（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1541">数学小游戏：原创字谜几则  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1523">趣题：理想模型下的排序算法（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1497">史上最牛诗歌：一个停机问题不可判定的证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1493">趣题：扫雷定理 互补棋盘上的数字和相等  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1480">再谈稠密性：令人吃惊的稠密集及其交集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1466">随记：普遍性验证、数学思维、代数基本定理及其它  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1460">Cursor*10竟然出续集了！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1452">用布制成的“山寨Klein瓶”  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1438">趣题：构造无穷长的字符串序列使每一项都不包含它前面的项  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1433">学了拓扑学,我猛然领悟到了儿时游戏的真谛……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1414">平面上处处稠密但在平行于坐标轴的直线上无处稠密的点集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1407">密码学协议举例（五）：两个人能够在电话上打牌吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1392">经典证明：Chaitin定理 不可能编程判断代码的最简性  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1386">绝对是有史以来最酷的计算器！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1381">TLE比赛结束 经典题目回顾  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1377">迟到的情人节祝福 Sierpinski Valentine  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1366">比比谁的代码短：TLE测试赛结束  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1362">密码学协议举例（四）：秘密数字的比较  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1358">Alice and Bob  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1344">拥有多个A的概率：又一个条件概率悖论  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1337">纸币的秘密：世界各国纸币上的统一记号  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1323">不同维度的对话：带你进入四维世界  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1312">这些序列都是自相似序列……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1305">主观不可见 一个非常有创意的动作解谜Flash小游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1301">关于0.9999&#8230;.=1的证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1293">假如人类生活在1000维空间里……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1289">密码学协议举例（三）：另类的密钥交换协议  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1278">预告：几个有趣的编程比赛  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1270">刷屏新工具：史上最壮观的生命游戏构造图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1261">密码学协议举例（二）：秘密共享的门限方案  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1255">一个简单而有用的数据结构  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1241">趣题：在双向有序链表中查找指定的数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1233">这个图形有什么牛B的地方？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1230">密码学协议举例（一）：带有防欺骗的承诺  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1227">Mandelbrot the Fractal Bear 可爱的分形熊熊  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1209">趣题：理想模型下的排序算法（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1201">一个难看的证明和一个漂亮的证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1187">根号2是无理数的又一个精彩证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1179">身份验证、中间人攻击和数字签名：浅谈密码学（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1177">酷图分享：The Eye of i  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1163">绝对牛B！由多联骨牌拼出的钟表盘面  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1160">趣题：匿名的消息广播  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1153">猜猜看这是什么地方？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1148">趣题：椭圆焦点到两切线交点的连线平分焦点对两切点的张角  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1141">多功能大厅的椅子应该是什么样子的？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1136">身份验证、中间人攻击和数字签名：浅谈密码学（中）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1128">据说可以用来测试智力的几张图片  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1120">身份验证、中间人攻击和数字签名：浅谈密码学（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1113">强大的遗传算法：用50个半透明多边形重现蒙娜丽莎  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1107">Möbius版Hex游戏：第一个以Möbius环为棋盘的游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1103">最牛的图纸：Escher网格  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1094">征税到底亏了谁？简单数学背后的经济学原理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1089">趣题：用正则表达式判断一个二进制数是否能被3整除  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1078">八卦的学问：实现所有人消息共享最少需要多少通电话？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1057">漫话二分（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1066">睡觉也不歇息……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1053">讲个故事：Saw V中的死亡谜题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1037">假如宇宙是有界的……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1035">无限长的金属杆：理想模型带来的悖论  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1029">Steffen可活动多面体  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1013">漫话二分（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/1006">经典证明：不用数学归纳法直接推导平面图的Euler公式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/998">趣题：完全图K_n最少可以拆成多少个完全二分图？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/996">UyHiP趣题：(√2 +√3)^1948小数点后第48位是多少？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/989">World of Goo与Sierpinski三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/978">构造函数使得任意小的区间所对应的值域都是整个实数域  </a><br>
+<a href="http://www.matrix67.com/blog/archives/973">号外：物理构建类解谜游戏World of Goo下载  </a><br>
+<a href="http://www.matrix67.com/blog/archives/959">《从一到无穷大》选谈：思维的尺度  </a><br>
+<a href="http://www.matrix67.com/blog/archives/954">趣题：用最少的“并行交换”完成排序  </a><br>
+<a href="http://www.matrix67.com/blog/archives/944">趣题：只用赋值、自增和循环操作实现减法运算  </a><br>
+<a href="http://www.matrix67.com/blog/archives/930">统计数据、相关性与因果关系  </a><br>
+<a href="http://www.matrix67.com/blog/archives/925">趣闻：世界上最大的数是多少？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/920">Typography Art: Mathematical Induction  </a><br>
+<a href="http://www.matrix67.com/blog/archives/910">趣题：如何用集合来定义有序对  </a><br>
+<a href="http://www.matrix67.com/blog/archives/901">停机问题、Chaitin常数与万能证明方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/890">经典证明：环面上的七色定理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/879">随机洗牌：哪一种算法是正确的？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/866">Original Ideas  </a><br>
+<a href="http://www.matrix67.com/blog/archives/858">趣题：用最少的块移动实现逆序操作  </a><br>
+<a href="http://www.matrix67.com/blog/archives/853">为什么平分圆面积的所有曲线中以直径最短？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/848">Code Golf：比比谁写的代码最短  </a><br>
+<a href="http://www.matrix67.com/blog/archives/846">Count Like a Mathematician  </a><br>
+<a href="http://www.matrix67.com/blog/archives/844">寻求真心话大冒险之猜数游戏的最佳策略  </a><br>
+<a href="http://www.matrix67.com/blog/archives/835">用计算机自动作曲？Wolfram的手机铃声生成算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/830">趣题：尽可能用奇数次猜测完成猜数游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/813">趣题：用位运算生成下一个含有k个1的二进制数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/810">Light-Bot：一个编程启蒙游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/801">趣题：奇怪的有向图 任两点间两步之内可达的路径有且仅有一条  </a><br>
+<a href="http://www.matrix67.com/blog/archives/796">经典证明：一个数论定理的组合学证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/789">八皇后加强版：每个皇后最多攻击一个其它的皇后  </a><br>
+<a href="http://www.matrix67.com/blog/archives/785">Oh 一层一层 一层一层 一层一层 又一层层的Klein瓶  </a><br>
+<a href="http://www.matrix67.com/blog/archives/773">数学思维游戏两则：Gabriel喇叭、世界末日论  </a><br>
+<a href="http://www.matrix67.com/blog/archives/768">最酷的证明：Pick定理另类证法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/751">趣题：2n+1个点中任n个都与同一点相连,则存在一个连接所有点的点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/746">趣题：循环赛中总存在一人“可传递一次”地打败了所有人  </a><br>
+<a href="http://www.matrix67.com/blog/archives/754">荒唐的一幕  </a><br>
+<a href="http://www.matrix67.com/blog/archives/733">趣题：奇怪的自然数集划分  </a><br>
+<a href="http://www.matrix67.com/blog/archives/730">思考的乐趣：UyHiP趣题之用最少的块移动实现逆序操作  </a><br>
+<a href="http://www.matrix67.com/blog/archives/725">牛！各种变态的数独谜题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/720">是否存在只在一点连续的函数？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/718">一个与矩形剖分有关的命题（五）：数学归纳法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/706">iHologram：利用手机水平感应功能打造惊人3D效果  </a><br>
+<a href="http://www.matrix67.com/blog/archives/701">“解答和题目一样长”：更多的一句话证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/698">趣题：构造一个[0,1]到(0,1)的一一映射  </a><br>
+<a href="http://www.matrix67.com/blog/archives/696">Usain Bolt and the Curve Fitting Method  </a><br>
+<a href="http://www.matrix67.com/blog/archives/691">错觉动画：旋转的网格  </a><br>
+<a href="http://www.matrix67.com/blog/archives/687">Al Zimmermann编程大赛已经开始  </a><br>
+<a href="http://www.matrix67.com/blog/archives/682">经典证明：Prüfer编码与Cayley公式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/677">趣题：三角形中的六点共圆  </a><br>
+<a href="http://www.matrix67.com/blog/archives/666">双向Josephus问题中的分形图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/661">一些新的视频处理技术  </a><br>
+<a href="http://www.matrix67.com/blog/archives/655">海盗分金问题的扩展：当N&gt;200时  </a><br>
+<a href="http://www.matrix67.com/blog/archives/653">Mathway：对付数学作业的新武器  </a><br>
+<a href="http://www.matrix67.com/blog/archives/650">七点共圆：一个美妙的结论  </a><br>
+<a href="http://www.matrix67.com/blog/archives/646">L: Change the WorLd中的数学题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/644">艰苦奋斗,自力更生,和过去的自己团结起来！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/638">趣题：最小的可覆盖所有12种五联骨牌的图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/631">立体图与三维数据展示  </a><br>
+<a href="http://www.matrix67.com/blog/archives/610">O3 ·7 ·5 ·5 ·4 ·7 ·6 ·6 ·7 ·?  </a><br>
+<a href="http://www.matrix67.com/blog/archives/608">一个不属于我的节日  </a><br>
+<a href="http://www.matrix67.com/blog/archives/605">不可能几何体与分形图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/600">超强的储存方法：即使连续128个扇区全部损坏也能恢复原数据  </a><br>
+<a href="http://www.matrix67.com/blog/archives/598">一个与矩形剖分有关的命题（四）：简便的数论证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/596">Geek的悲哀  </a><br>
+<a href="http://www.matrix67.com/blog/archives/586">牛B的Mathematica：寻找开头和结尾都是字母y的形容词  </a><br>
+<a href="http://www.matrix67.com/blog/archives/583">新发现的一些有趣的anagram  </a><br>
+<a href="http://www.matrix67.com/blog/archives/576">一个与矩形剖分有关的命题（三）：诡异的微积分证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/572">设计调查问卷的艺术：怎样才能绝对地保证个人隐私不被泄露  </a><br>
+<a href="http://www.matrix67.com/blog/archives/569">视频：用多米诺骨牌来解释逻辑门  </a><br>
+<a href="http://www.matrix67.com/blog/archives/564">一个与矩形剖分有关的命题（二）：直观的图论证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/562">（召集）你喜欢什么类型的数字？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/561">csdn上的一个数学猜想  </a><br>
+<a href="http://www.matrix67.com/blog/archives/560">FOX新剧Fringe &#038; 官方网站上的一个小谜题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/559">一个与矩形剖分有关的命题（一）：巧妙的初等证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/557">一些有创意的独立游戏 &#038; 一个火星的3D动画短片  </a><br>
+<a href="http://www.matrix67.com/blog/archives/556">动作解谜游戏预告：CAPCOM神秘新作Flock!  </a><br>
+<a href="http://www.matrix67.com/blog/archives/555">新一轮的小游戏推荐  </a><br>
+<a href="http://www.matrix67.com/blog/archives/554">趣题：不用除法,如何求n个数的最小公倍数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/553">经典证明：pi^2是无理数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/552">趣闻一则：Fermi实验室的神秘密码  </a><br>
+<a href="http://www.matrix67.com/blog/archives/551">视频推荐：Dimensions &#8211; A walk through mathematics  </a><br>
+<a href="http://www.matrix67.com/blog/archives/550">Valentine&#8217;s Day Maze 情人节迷宫  </a><br>
+<a href="http://www.matrix67.com/blog/archives/549">我是∂/∂x怪,我要吃掉你……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/548">趣题：不断将各数替换为右侧比其小的数的个数,数列终将不再变化  </a><br>
+<a href="http://www.matrix67.com/blog/archives/544">经典证明：扫雷是NP完全问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/543">关于北大中文系应用语言学（下）：从科学到不科学  </a><br>
+<a href="http://www.matrix67.com/blog/archives/542">网站推荐：20000道经典数学题！problemcorner.org  </a><br>
+<a href="http://www.matrix67.com/blog/archives/540">趣闻两则：麦田圈之谜的重大突破 第五大道的神秘住宅  </a><br>
+<a href="http://www.matrix67.com/blog/archives/539">经典证明：质数无穷多与两个更强的命题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/537">分形生活之四：Kögra分形字体  </a><br>
+<a href="http://www.matrix67.com/blog/archives/536">经典证明：Cantor-Bernstein-Schroeder定理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/534">再给大家推荐一些小游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/532">趣题：构造1到n-1的排列使得前缀和模n仍为一个排列  </a><br>
+<a href="http://www.matrix67.com/blog/archives/533">xkcd：每一个该死的早晨（深有同感）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/530">祝所有网友六一儿童节快乐！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/529">排序算法、时间复杂度与信息熵  </a><br>
+<a href="http://www.matrix67.com/blog/archives/528">趣题：直尺不够长时如何作出连接两点的直线？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/527">Curta：神奇的纯机械计算器  </a><br>
+<a href="http://www.matrix67.com/blog/archives/526">Ubigraph：强大而易用的图论动画生成软件  </a><br>
+<a href="http://www.matrix67.com/blog/archives/525">Google Treasure Hunt 2008开始啦！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/524">《什么是数学》读书笔记（二·上）：从自然数到实数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/523">8&#8242;s Imaginary Friend  </a><br>
+<a href="http://www.matrix67.com/blog/archives/521">推荐视频：10 Optical Illusions in 2 Minutes  </a><br>
+<a href="http://www.matrix67.com/blog/archives/520">Follow the Whitespaces 一个诡异的解谜网站  </a><br>
+<a href="http://www.matrix67.com/blog/archives/519">牛！Mathematica还能这样用！自己制作马赛克拼图  </a><br>
+<a href="http://www.matrix67.com/blog/archives/518">We can all make a difference!  </a><br>
+<a href="http://www.matrix67.com/blog/archives/515">分形生活之三：分形抽屉  </a><br>
+<a href="http://www.matrix67.com/blog/archives/514">趣题：在指定形状的棋盘内放置n个相同的图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/513">Foldit：全球玩家都来为生物科学做贡献！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/512">幽灵、吸血鬼与僵尸：有创意的推理解谜游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/511">趣题：寻找出现了奇数次的数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/510">记08年北大ACM选拔赛  </a><br>
+<a href="http://www.matrix67.com/blog/archives/509">两个与无穷级数有关的悖论  </a><br>
+<a href="http://www.matrix67.com/blog/archives/508">关于北大中文系应用语言学（上）：更多有趣的汉语语法现象  </a><br>
+<a href="http://www.matrix67.com/blog/archives/507">趣题：空间四边形外切于给定球,求证四切点共面  </a><br>
+<a href="http://www.matrix67.com/blog/archives/506">代数曲面画廊  </a><br>
+<a href="http://www.matrix67.com/blog/archives/505">趣题：用正三角形和正四边形构成凸多边形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/504">趣题：选取最少的质数集合构成发散的部分调和级数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/503">Mathematics Version 2.12  </a><br>
+<a href="http://www.matrix67.com/blog/archives/502">分享一些有趣的面试智力题（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/501">分享一些有趣的面试智力题（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/500">矩阵、随机化与分形图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/499">视频推荐：Outside In &#8211; 再谈Smale球面外翻问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/497">神奇的锈规作图：单用一个只能画单位圆的圆规如何作等边三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/498">数学MM  </a><br>
+<a href="http://www.matrix67.com/blog/archives/495">《什么是数学》读书笔记（一）：反证法、数学归纳法与唯一分解定理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/494">如何把一个1:3的矩形分成若干份,然后拼成一个正方形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/493">This is a triumph!  </a><br>
+<a href="http://www.matrix67.com/blog/archives/492">分享：N多国外大学的教学录像  </a><br>
+<a href="http://www.matrix67.com/blog/archives/491">有好吃的！自己动手做Sierpinski饼干  </a><br>
+<a href="http://www.matrix67.com/blog/archives/490">Sangaku：颇具神秘色彩的几何游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/484">分享几个小游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/483">Map of Mathematical Structures  </a><br>
+<a href="http://www.matrix67.com/blog/archives/482">趣题：对数字进行编码使其按字典序排列后仍然有序  </a><br>
+<a href="http://www.matrix67.com/blog/archives/481">单位根  </a><br>
+<a href="http://www.matrix67.com/blog/archives/480">又一个牛B函数：阴阳图极坐标函数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/479">（愚人节笑话）Stetson大学教授发现Fermat大定理反例  </a><br>
+<a href="http://www.matrix67.com/blog/archives/477">另类思维训练：你能想出这样的词吗？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/476">63岁以色列数学家Avraham成功解决公路涂色问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/475">牛B的正则表达式：素数判定与线性方程求解  </a><br>
+<a href="http://www.matrix67.com/blog/archives/474">趣题：量子计算机、另类编程语言和幂函数的解释  </a><br>
+<a href="http://www.matrix67.com/blog/archives/473">eBay &#8211; 旅行商问题新解  </a><br>
+<a href="http://www.matrix67.com/blog/archives/472">Super Mario之量子物理学版？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/470">物理方法解决数学问题（五）：一个与椭圆有关的性质  </a><br>
+<a href="http://www.matrix67.com/blog/archives/469">如果让科幻电影来参加物理考试……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/468">祝所有网友节日快乐！！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/467">文字游戏之Buffalo buffalo Buffalo buffalo buffalo&#8230;  </a><br>
+<a href="http://www.matrix67.com/blog/archives/466">几道经典的几何作图趣题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/465">趣题：构造游戏初始状态使得后行者必胜  </a><br>
+<a href="http://www.matrix67.com/blog/archives/464">三路国际象棋：非常有创意的棋类游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/463">codepad.org：分享程序代码的最佳去处  </a><br>
+<a href="http://www.matrix67.com/blog/archives/462">Phun：一个巨牛B的物理引擎  </a><br>
+<a href="http://www.matrix67.com/blog/archives/461">趣题：鸽笼原理的应用 IMO 2001 Problem #3  </a><br>
+<a href="http://www.matrix67.com/blog/archives/459">更多有趣的声音错觉  </a><br>
+<a href="http://www.matrix67.com/blog/archives/457">牛B数学教授出的牛B考题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/456">趣题：猜帽子游戏与Hamming编码  </a><br>
+<a href="http://www.matrix67.com/blog/archives/455">Atropos：仍然具有可玩性的状态共用型组合游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/454">操,我连向量都不是……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/453">用相同形状的多联骨牌拼接完全对称图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/452">很诡异的博弈问题分析方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/451">运用条件概率分析合情推理模式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/450">趣题：七圆定理 一个非常漂亮的结论  </a><br>
+<a href="http://www.matrix67.com/blog/archives/449">趣味小程序Jenn3D：带你进入神奇的超球面空间  </a><br>
+<a href="http://www.matrix67.com/blog/archives/448">趣题：构造函数使得平面上任意小的圆内均包含函数上的点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/447">空间想象：立方体迭代后所形成的三维分形图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/446">经典错觉版画之Portal版  </a><br>
+<a href="http://www.matrix67.com/blog/archives/445">祝所有网友情人节快乐！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/444">100囚犯问题、100囚犯问题加强版与选择公理（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/443">100囚犯问题、100囚犯问题加强版与选择公理（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/442">平面几何趣题：三角形中的四点共圆  </a><br>
+<a href="http://www.matrix67.com/blog/archives/440">趣题：用奇数个相同的多联骨牌组成轴对称图形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/439">Bayesian评分系统：解决样本数量过少引起的问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/437">漫画：Möbius环上的战斗  </a><br>
+<a href="http://www.matrix67.com/blog/archives/436">十分钟创意小游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/435">David Copperfield的电视互动魔术  </a><br>
+<a href="http://www.matrix67.com/blog/archives/433">Menger海绵体的斜截面是什么样子的  </a><br>
+<a href="http://www.matrix67.com/blog/archives/432">非传递性骰子：A比B好,B比C好,A不一定比C好  </a><br>
+<a href="http://www.matrix67.com/blog/archives/431">08年MIT解谜比赛结束 比赛题目已经发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/430">来自08年独立游戏节的创意游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/429">有趣的C语言问题 测试你对C语言的熟悉程度  </a><br>
+<a href="http://www.matrix67.com/blog/archives/428">Atomic Model：一些奇特的物理现象  </a><br>
+<a href="http://www.matrix67.com/blog/archives/427">分享：非常强大的mp3手机铃声  </a><br>
+<a href="http://www.matrix67.com/blog/archives/426">小游戏推荐：离线解谜游戏Abstractica  </a><br>
+<a href="http://www.matrix67.com/blog/archives/425">趣题：每一列中至少有一个数字0或数字9  </a><br>
+<a href="http://www.matrix67.com/blog/archives/424">趣题：一个与Hamilton回路有关的问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/423">Benjamin Franklin的另类幻方  </a><br>
+<a href="http://www.matrix67.com/blog/archives/422">物理方法解决数学问题（四）：Fermat-Torricelli问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/419">物理方法解决数学问题（三）：神奇的Fermat原理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/417">关于123456789：一个难以解释的数学巧合  </a><br>
+<a href="http://www.matrix67.com/blog/archives/416">证明实数区间不可数的新方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/415">趣题：经典二分问题的一个扩展  </a><br>
+<a href="http://www.matrix67.com/blog/archives/413">另类分形图形赏：2007年分形艺术大赛获奖作品  </a><br>
+<a href="http://www.matrix67.com/blog/archives/412">概率学的创立：Chevalier de Méré问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/410">巨牛B的在线数学工具：反符号计算器  </a><br>
+<a href="http://www.matrix67.com/blog/archives/409">推荐视频：另类素数筛选法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/408">我所见过的最有创意的Flash小游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/407">隐藏在函数里的问候  </a><br>
+<a href="http://www.matrix67.com/blog/archives/406">喜欢这个Blog？小心别人发现你的致命弱点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/405">趣题：n为奇数时,正n边形的三角形剖分内有且仅有一个锐角三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/403">2008年北京大学自主招生数学考题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/402">10 Levels of Security：又一个在线解谜游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/401">关于2008：你必须知道的10个有趣的事实  </a><br>
+<a href="http://www.matrix67.com/blog/archives/400">That&#39;s not supposed to happen!  </a><br>
+<a href="http://www.matrix67.com/blog/archives/399">不可能几何体新境界：史上最牛的gif动画平铺背景  </a><br>
+<a href="http://www.matrix67.com/blog/archives/398">Kobon问题新进展：17条直线可构成多少个互不重叠的三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/397">警告：绝对不要把pi转换为二进制！！！  </a><br>
+<a href="http://www.matrix67.com/blog/archives/396">趣题：估算小数点后第三位  </a><br>
+<a href="http://www.matrix67.com/blog/archives/393">计算阶乘的另一些有趣的算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/392">物理方法解决数学问题（二）：Archimedes与球体积公式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/391">物理方法解决数学问题（一）：从一个简单的平面几何题谈起  </a><br>
+<a href="http://www.matrix67.com/blog/archives/390">推荐视频：速算与数学魔术秀  </a><br>
+<a href="http://www.matrix67.com/blog/archives/388">数学题征解：存在一条直线穿过至少两个点且颜色全部相同  </a><br>
+<a href="http://www.matrix67.com/blog/archives/387">八进制：未来人类的计数法？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/386">如果在Google Code Search里搜索fuck……  </a><br>
+<a href="http://www.matrix67.com/blog/archives/385">编程世界的20个怪物  </a><br>
+<a href="http://www.matrix67.com/blog/archives/384">Zoomquilt II &#38; Infinite OZ 无限放大之加强版  </a><br>
+<a href="http://www.matrix67.com/blog/archives/383">AppJet：编写并发布你的网络应用程序  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5233">史上最难的初等几何问题？分享一个参考答案  </a><br>
+<a href="http://www.matrix67.com/blog/archives/5232">Gömböc：神奇的自调整几何体  </a><br>
+<a href="http://www.matrix67.com/blog/archives/380">另类搞笑：自我指涉例句不完全收集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/379">SAGE：一个新的开源多平台数学软件  </a><br>
+<a href="http://www.matrix67.com/blog/archives/378">Geek饰物DIY：粘土工艺之Sierpinski三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/377">计算机与拼图游戏：探讨一个交互式问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/375">网站推荐：archimy.com 在线函数图象绘制  </a><br>
+<a href="http://www.matrix67.com/blog/archives/374">史上最难的初等几何问题？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/373">四维魔方？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/372">欧拉的一篇研究报告：关于整数因子和的一个非常奇特规律的发现  </a><br>
+<a href="http://www.matrix67.com/blog/archives/371">标题党 之 密码学家用PS3成功预测美国2008大选结果  </a><br>
+<a href="http://www.matrix67.com/blog/archives/370">真实与理性  </a><br>
+<a href="http://www.matrix67.com/blog/archives/369">Flash小游戏：Chat Noir  </a><br>
+<a href="http://www.matrix67.com/blog/archives/367">The Simpsons Homer^3：三维空间历险记  </a><br>
+<a href="http://www.matrix67.com/blog/archives/366">KMP算法与一个经典概率问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/365">趣题：丢失的机票 一个有趣的概率问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/364">趣题：直觉 VS 理性思考  经典概率问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/363">如果非要给这份爱加上一个期限,我希望是……无限  </a><br>
+<a href="http://www.matrix67.com/blog/archives/362">旧闻一则：神秘的0x5f3759df 不可思议的Quake III源码  </a><br>
+<a href="http://www.matrix67.com/blog/archives/361">牛顿迭代法快速寻找平方根  </a><br>
+<a href="http://www.matrix67.com/blog/archives/360">没有乘法口诀表将会怎样：古巴比伦乘法和古埃及乘法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/359">Chain Factor：容易上瘾的Flash解谜小游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/358">局部变动原理：算术平均数不小于几何平均数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/357">朋友提出的一个有趣的经济学问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/356">刚看到一个小笑话：我的数学MM  </a><br>
+<a href="http://www.matrix67.com/blog/archives/355">07年NOIp提高组题目内容概述  </a><br>
+<a href="http://www.matrix67.com/blog/archives/354">空间想象力大挑战！Smale球面外翻问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/352">挑战你的感觉 BBC科学栏目的趣味Flash测试  </a><br>
+<a href="http://www.matrix67.com/blog/archives/351">等高线模式：解决极大极小问题的另类策略  </a><br>
+<a href="http://www.matrix67.com/blog/archives/348">网上出现340-cipher破解系统 邀请大家一起破译Zodiac密码  </a><br>
+<a href="http://www.matrix67.com/blog/archives/347">网站推荐：blackflip 基于Flash的web 2.0解谜游戏站  </a><br>
+<a href="http://www.matrix67.com/blog/archives/345">偶然发现一个iGoogle彩蛋 猜猜看触发事件是什么  </a><br>
+<a href="http://www.matrix67.com/blog/archives/344">Eleusis Express：非常有创意的多人纸牌游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/343">网站推荐：The Python Challenge 第一个编程解谜站点  </a><br>
+<a href="http://www.matrix67.com/blog/archives/342">趣题：Anagram辅助程序的数据结构  </a><br>
+<a href="http://www.matrix67.com/blog/archives/341">PS图片集：Thinking with Portals  </a><br>
+<a href="http://www.matrix67.com/blog/archives/340">五子棋接龙：一个简单而有趣的挑战  </a><br>
+<a href="http://www.matrix67.com/blog/archives/338">Linux下的数学工具Maxima 简明教程（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/337">Linux下的数学工具Maxima 简明教程（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/336">Poincaré圆盘模型：一个神奇的双曲世界  </a><br>
+<a href="http://www.matrix67.com/blog/archives/334">号外：2,3图灵机通用性得证 英国大学生获得2.5万美元奖金  </a><br>
+<a href="http://www.matrix67.com/blog/archives/333">编辑距离、拼写检查与度量空间：一个有趣的数据结构  </a><br>
+<a href="http://www.matrix67.com/blog/archives/332">趣图：分形图形之海岸线 无限放大的图片  </a><br>
+<a href="http://www.matrix67.com/blog/archives/331">Google面试题中的两道趣题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/330">函数上某一点导数为正,该点邻域不一定形成单增区间  </a><br>
+<a href="http://www.matrix67.com/blog/archives/329">推荐网页：一大堆的Computer Science Puzzle  </a><br>
+<a href="http://www.matrix67.com/blog/archives/327">Retargeting：经典动态规划问题的一个出人意料的应用  </a><br>
+<a href="http://www.matrix67.com/blog/archives/326">创意游戏推荐：FPS+解谜 VALVE新游戏发行  </a><br>
+<a href="http://www.matrix67.com/blog/archives/325">数学与色情？ “以下图片完全由数学算法生成”  </a><br>
+<a href="http://www.matrix67.com/blog/archives/324">07年NOIp模拟赛by Matrix67  TRIVIA20  </a><br>
+<a href="http://www.matrix67.com/blog/archives/323">07年NOIp模拟赛by Matrix67 解题报告  </a><br>
+<a href="http://www.matrix67.com/blog/archives/321">07年NOIp模拟赛by Matrix67 比赛成绩公布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/320">07年NOIp模拟赛by Matrix67 比赛已顺利结束 题目内容在此发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/317">将杠杆原理发挥到极致！硬币堆叠图片赏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/314">趣题：等腰直角三角形与勾股定理形式的条件  </a><br>
+<a href="http://www.matrix67.com/blog/archives/312">趣题：内切圆与最大内接矩形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/310">Flatland电影版！关于一个二维世界中的哥白尼  </a><br>
+<a href="http://www.matrix67.com/blog/archives/309">2007年解谜游戏设计大赛作品  </a><br>
+<a href="http://www.matrix67.com/blog/archives/308">聆听函数的声音：Mathematica的声音函数试验  </a><br>
+<a href="http://www.matrix67.com/blog/archives/307">数学推导之Sex is fun完整版  </a><br>
+<a href="http://www.matrix67.com/blog/archives/305">推荐视频：神奇的大脑 之 三个错觉演示  </a><br>
+<a href="http://www.matrix67.com/blog/archives/304">趣题：用最简单的话来描述一个集合  </a><br>
+<a href="http://www.matrix67.com/blog/archives/302">一段极具创意的视频：《机器人故事》片头动画  </a><br>
+<a href="http://www.matrix67.com/blog/archives/301">Tupper自我指涉公式：图象里竟然包含式子本身  </a><br>
+<a href="http://www.matrix67.com/blog/archives/300">趣题：单位正方形内相互分离的两个小正方形,其边长和小于1  </a><br>
+<a href="http://www.matrix67.com/blog/archives/297">Geek的桌面怪物：脑袋跟着你转动的龙  </a><br>
+<a href="http://www.matrix67.com/blog/archives/292">神奇的分形艺术（四）：Julia集和Mandelbrot集  </a><br>
+<a href="http://www.matrix67.com/blog/archives/291">数学笑话之“饼干之争”  </a><br>
+<a href="http://www.matrix67.com/blog/archives/290">十个有趣的英文文字游戏（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/289">十个有趣的英文文字游戏（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/283">魔方问题新进展：26步足以破解任何魔方  </a><br>
+<a href="http://www.matrix67.com/blog/archives/282">另外两种证明素数无穷多的方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/281">OI/MO必备：巨牛无比的公式、定理速查表  </a><br>
+<a href="http://www.matrix67.com/blog/archives/280">神奇的分形艺术（三）：Sierpinski三角形  </a><br>
+<a href="http://www.matrix67.com/blog/archives/278">花了我五秒钟才反应过来,笑死我了～～～  </a><br>
+<a href="http://www.matrix67.com/blog/archives/276">十个利用矩阵乘法解决的经典题目  </a><br>
+<a href="http://www.matrix67.com/blog/archives/273">趣题：非常具有启发性的概率问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/272">Puzzleup新一轮比赛8月1日开始  </a><br>
+<a href="http://www.matrix67.com/blog/archives/271">Art of Problem Solving: Proof without Words  </a><br>
+<a href="http://www.matrix67.com/blog/archives/269">令人敬畏的十维空间  </a><br>
+<a href="http://www.matrix67.com/blog/archives/268">位运算简介及实用技巧（四）：实战篇  </a><br>
+<a href="http://www.matrix67.com/blog/archives/266">位运算简介及实用技巧（三）：进阶篇(2)  </a><br>
+<a href="http://www.matrix67.com/blog/archives/264">位运算简介及实用技巧（二）：进阶篇(1)  </a><br>
+<a href="http://www.matrix67.com/blog/archives/263">位运算简介及实用技巧（一）：基础篇  </a><br>
+<a href="http://www.matrix67.com/blog/archives/260">Yuor bairn is samtrer tahn you tnhik  </a><br>
+<a href="http://www.matrix67.com/blog/archives/259">重庆晨报新闻一则：你还会做初三数学题吗  </a><br>
+<a href="http://www.matrix67.com/blog/archives/258">J.J. Abrams的神秘电影 &#38; 一个解谜网站  </a><br>
+<a href="http://www.matrix67.com/blog/archives/255">十大另类程序语言（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/253">十大另类程序语言（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/251">又是黑色星期五！为什么总是黑色星期五呢？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/249">神奇的分形艺术（二）：一条连续的曲线可以填满整个平面  </a><br>
+<a href="http://www.matrix67.com/blog/archives/248">免费3D小游戏推荐：Counterclockwise  </a><br>
+<a href="http://www.matrix67.com/blog/archives/247">经典谬论：用复数来证明1=2  </a><br>
+<a href="http://www.matrix67.com/blog/archives/243">神奇的分形艺术（一）：无限长的曲线可能围住一块有限的面积  </a><br>
+<a href="http://www.matrix67.com/blog/archives/240">C语言速成手册（六）：其它问题、后记  </a><br>
+<a href="http://www.matrix67.com/blog/archives/238">超真实声音及声音错觉  </a><br>
+<a href="http://www.matrix67.com/blog/archives/236">同余运算及其基本性质  </a><br>
+<a href="http://www.matrix67.com/blog/archives/234">数论部分第一节：素数与素性测试  </a><br>
+<a href="http://www.matrix67.com/blog/archives/232">几个有趣的免费小游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/231">借用点其它的东西,你或许可以三等分角  </a><br>
+<a href="http://www.matrix67.com/blog/archives/230">C语言速成手册（五）：其它运算符、文件操作、其它函数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/228">推荐： The Hundred Greatest Theorems  </a><br>
+<a href="http://www.matrix67.com/blog/archives/227">Google US Puzzle Championship即将开始 热身赛已发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/225">C语言速成手册（四）：指针、动态内存分配、标准输入  </a><br>
+<a href="http://www.matrix67.com/blog/archives/223">爱的方程式（加强版）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/220">C语言速成手册（三）：数组、字符串、结构  </a><br>
+<a href="http://www.matrix67.com/blog/archives/218">C语言速成手册（二）：布尔值、条件判断、循环  </a><br>
+<a href="http://www.matrix67.com/blog/archives/216">C语言速成手册（一）：基本数据类型、标准输出、函数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/215">C语言速成手册（零）：序言、环境、你的第一个程序  </a><br>
+<a href="http://www.matrix67.com/blog/archives/212">讲个故事：一切都是数字 &#8211; Numb3rs S01Ep01  </a><br>
+<a href="http://www.matrix67.com/blog/archives/210">绝非PS：今天我用硬纸板做出了一个不可能几何体  </a><br>
+<a href="http://www.matrix67.com/blog/archives/209">What&#39;s Special About This Number?  </a><br>
+<a href="http://www.matrix67.com/blog/archives/206">又一种证明根号2是无理数的方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/205">趣题：阿米巴的生存  </a><br>
+<a href="http://www.matrix67.com/blog/archives/204">趣题：哪条线段最长,哪条线段最短  </a><br>
+<a href="http://www.matrix67.com/blog/archives/203">考验你的思维能力：一类含有if P then Q句式的逻辑问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/202">漫话进位制  </a><br>
+<a href="http://www.matrix67.com/blog/archives/201">Matrix67生日邀请赛 标程公布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/199">Matrix67生日邀请赛 完全题解发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/198">Matrix67生日邀请赛 比赛成绩公布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/197">Matrix67生日邀请赛顺利结束 题目内容在此发布  </a><br>
+<a href="http://www.matrix67.com/blog/archives/191">又一个比较诡异的悖论  </a><br>
+<a href="http://www.matrix67.com/blog/archives/185">OI之外的一些东西：简单谈谈排序网络  </a><br>
+<a href="http://www.matrix67.com/blog/archives/178">从零开始学算法：十种排序算法介绍（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/173">Think Outside the Box: 一道原创智力题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/172">从零开始学算法：十种排序算法介绍（中）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/169">比比谁更无聊：Whitespace语言  </a><br>
+<a href="http://www.matrix67.com/blog/archives/168">终于AC了：用BrainFuck语言过SPOJ测试题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/166">从零开始学算法：十种排序算法介绍（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/161">分享三道题目的代码+JavaScript Syntax Highlight测试  </a><br>
+<a href="http://www.matrix67.com/blog/archives/160">OIer好帮手：graphviz功能演示  </a><br>
+<a href="http://www.matrix67.com/blog/archives/156">令人称奇的简单证明：五种方法证明根号2是无理数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/153">非传统题型练习：解析一道循环赛题目  </a><br>
+<a href="http://www.matrix67.com/blog/archives/152">非传统题型练习：三道交互式题目  </a><br>
+<a href="http://www.matrix67.com/blog/archives/150">非传统题型练习：三道答案提交类题目  </a><br>
+<a href="http://www.matrix67.com/blog/archives/146">我见过的最大的Flash游戏,最有意思的Puzzle类游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/143">2.14 送大家一个我很喜欢的图片  </a><br>
+<a href="http://www.matrix67.com/blog/archives/141">编写一个最简单的交互式题目  </a><br>
+<a href="http://www.matrix67.com/blog/archives/138">用Cena评测答案提交类题目的另类方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/137">无限小却无限大的集合 &#38; 阶梯状的连续函数  </a><br>
+<a href="http://www.matrix67.com/blog/archives/136">信息学竞赛中可能有用的概率学知识  </a><br>
+<a href="http://www.matrix67.com/blog/archives/135">质数单词表  </a><br>
+<a href="http://www.matrix67.com/blog/archives/129">A Variety of Captcha 各式各样的验证码  </a><br>
+<a href="http://www.matrix67.com/blog/archives/127">关于套套：最近流行的一道智力题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/122">位运算讲解系列文章（目录）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/120">什么是生成函数？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/116">二分图最大匹配的König定理及其证明  </a><br>
+<a href="http://www.matrix67.com/blog/archives/115">KMP算法详解  </a><br>
+<a href="http://www.matrix67.com/blog/archives/112">最长公共上升子序列的另一个O(mn)的算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/109">IOCCC近几年的获奖作品  </a><br>
+<a href="http://www.matrix67.com/blog/archives/108">什么是离散化？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/105">什么是P问题、NP问题和NPC问题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/100">一句话证明余弦定理  </a><br>
+<a href="http://www.matrix67.com/blog/archives/92">《数据结构与算法分析》5000字缩写（下）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/91">《数据结构与算法分析》5000字缩写（中）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/90">《数据结构与算法分析》5000字缩写（上）  </a><br>
+<a href="http://www.matrix67.com/blog/archives/85">爱的方程式  </a><br>
+<a href="http://www.matrix67.com/blog/archives/83">几个很强的数列  </a><br>
+<a href="http://www.matrix67.com/blog/archives/80">Java Applet平衡树演示  </a><br>
+<a href="http://www.matrix67.com/blog/archives/76">史上最强数字找规律题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/74">大开眼界：世上最无敌的迷宫当数“分形迷宫”  </a><br>
+<a href="http://www.matrix67.com/blog/archives/65">切实感受四维空间  </a><br>
+<a href="http://www.matrix67.com/blog/archives/61">在线数列百科全书  </a><br>
+<a href="http://www.matrix67.com/blog/archives/60">Fibonacci数列转二进制图形的惊异发现  </a><br>
+<a href="http://www.matrix67.com/blog/archives/58">几个把平面几何问题的辅助线做到空间去的数学趣题  </a><br>
+<a href="http://www.matrix67.com/blog/archives/55">不可解问题(Undecidable Decision Problem)  </a><br>
+<a href="http://www.matrix67.com/blog/archives/54">Not Pr0n 号称最难的在线解谜游戏  </a><br>
+<a href="http://www.matrix67.com/blog/archives/46">某大牛直接用机器码Debug编程  </a><br>
+<a href="http://www.matrix67.com/blog/archives/44">强烈推荐“Powers of 10” 从10亿光年到0.1飞米  </a><br>
+<a href="http://www.matrix67.com/blog/archives/39">二分图最大匹配问题匈牙利算法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/38">圆比直线长？  </a><br>
+<a href="http://www.matrix67.com/blog/archives/33">非常奇妙的证明：图形必在格点之外  </a><br>
+<a href="http://www.matrix67.com/blog/archives/30">原创科普说明文：递归  </a><br>
+<a href="http://www.matrix67.com/blog/archives/27">聆听圆周率的声音  </a><br>
+<a href="http://www.matrix67.com/blog/archives/20">判定被7整除的简易方法  </a><br>
+<a href="http://www.matrix67.com/blog/archives/19">谬论：所有角都是直角  </a>  </p>
+
+</div>
+
+<div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'allmonday'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</div>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

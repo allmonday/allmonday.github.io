@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "lxml"
+categories: jekyll update
+tags: gist
+---
+
+## 记下怎么用lxml  
+[intro to lxml] (http://lxml.de/)
+
+{% highlight python linenos %}
+from lxml import etree
+import urllib2
+
+body = urllib2.urlopen("http://item.jd.com/412659.html").read()
+tree = etree.HTML(body)
+attrs = tree.xpath("//ul[@class='detail-list']/li")
+for li in attrs:
+	print ''.join(list(li.itertext()))
+
+{% endhighlight %}
+  
+output 
+
+```
+商品名称：惠氏奶粉
+商品编号：412659
+品牌：惠氏（Wyeth）
+上架时间：2013-12-11 18:35:54
+商品毛重：1.09kg
+商品产地：中国大陆
+适用年龄：1-3岁
+段位：3段
+包装：桶装
+类型：进口奶源
+分类：牛奶粉
+经营模式：京东自营
+
+```
+

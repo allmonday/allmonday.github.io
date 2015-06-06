@@ -1,0 +1,60 @@
+---
+layout: post
+title:  "新年计划"
+categories: jekyll update
+tags: draft
+---
+
+## 阅读
+
+- c程序设计语言
+- 自制编程语言
+- 图解密码技术
+- 征服c指针
+
+## 语言(程序)
+
+- GO (会写简单的服务器代码)
+- javascript 
+	- 阅读 lodash 源码
+	- 阅读 angularjs 源码
+	- 熟悉 jquery
+	- 尝试 material, sematic ui
+- python
+	- tornado
+- MySQL + Mongodb
+
+## 语言(外语)
+
+- 英语
+	- 单词背诵 
+	- 看英语字幕
+- 日语
+	- 背诵 500 句常用句子
+
+## 锻炼
+
+- 游泳 
+- 腹肌撕裂
+
+## 练习
+
+- python gist
+- javascript gist
+- go gist
+
+## 作品
+
+- 强化 rss 订阅功能
+- 微信端信息订阅工具
+- AJ的官方网站
+	- 还是弄个阿里云吧。。
+- 算法可视化 (简单弄弄排序之类的)
+	- d3
+	- canvas (pixi)
+- 写个背单词软件
+
+## 其他
+
+- 学一点简单的设计原理,色彩理论,熟悉sketch
+- 多去stackoverflow 灌水

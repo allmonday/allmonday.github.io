@@ -1,0 +1,138 @@
+---
+layout: post
+title:  "pandas"
+categories: jekyll update
+tags: python 摘记
+---
+
+[pandas入门](http://pda.readthedocs.org/en/latest/chp5.html)
+
+### import 
+
+```python
+from pandas import Series, DataFrame
+import pandas as pd
+```
+
+### Series
+```python
+obj = Series([1,2,3,4])
+obj.values
+obj2 = Series([1,2,3,4], index=['d','c','b','a'])
+obj2['a']
+obj2[['c','a','b']]
+
+#keep the mapping relationship
+obj2[obj2>0]
+obj2*2
+np.exp(obj2)
+```
+
+```python
+sdata = {'a':1, 'b': 11, 'c':111}
+obj3 = Series(sdata)
+obj4 = Series(sdata, index=['a','b']) #restrict
+obj4 = Series(sdata, index=['a','b', 'd']) #NaN
+
+pd.isnull(obj4)
+obj4.isnull()
+pd.notnull(obj4)
+
+obj3 + obj4
+
+obj3.name = "population" #name
+```
+
+### Data Frame
+###intro
+dataframe可以接受多种形式的输入:
+
+- dict of 1D ndarrays, lists, dicts, or Series
+- 2D numpy.ndarry
+- Structured or record ndarray
+- A Series
+- Another DataFrame
+
+```python
+data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002],
+                'pop': [1.5, 1.7, 3.6, 2.4, 2.9]}
+frame = DataFrame(data)
+frame = DataFrame(data, columns=['year','pop','state'])
+
+frame.shape
+
+frame['state']
+frame2 = DataFrame(data, columns=['year', 'state', 'pop', 'debt'],
+index=['one', 'two', 'three', 'four', 'five'])
+frame.ix['three']
+frame['year']
+frame['debt'] = 11
+
+val = Series([-1.2, -1.5, -1.7], index=['two','four','five'])
+frame2['debt'] = val #blank will be set NaN
+
+frame2['eastern'] = frame2.state == 'Ohio'
+
+#如果使用nested dict,则可以不用添加index了..
+pop = {'Nevada': {2001: 2.4, 2002: 2.9},
+'Ohio': {2000: 1.5, 2001: 1.7, 2002: 3.6}}
+#!!!!!!!!!mongo的数据正好可以进来!!!!!!
+
+#transerval?
+frame2.T
+```
+###object conversion
+```python
+frame['price'].dtype # -> object, can't be describe..
+frame['price'].astype('int32').describe()  # it works
+```
+
+###merge
+```python
+df = pd.DataFrame(np.random.randn(10,4))
+pieces = [df[:3], df[3:7], df[7:]]
+pd.concat(pieces)
+```
+
+###join 笛卡尔积
+```python
+pd.merge(left, right, on="Key")
+```
+
+###append
+```python
+df.append(s, ignore_index=True) #will not change self
+```
+
+###groupby
+
+- `Splitting` data into groups
+- `Applying` a function to each group independently
+- `Combining` the results into a data struct
+
+```python
+sw = frame.groupby('weight')
+sw.size() #count of each weight
+sw.sum() #sum of each group each column
+```
+
+###selecting
+
+```python
+#multi criteria
+frame.loc[(frame.nlp == 0) & (frame.total > 0)]
+```
+
+##plot 
+###simple plot
+```python
+ts = pd.Series(np.random.randn(1000), 
+    index=pd.date_range('1/1/2000', periods = 1000))
+ts = ts.cumsum()
+ts.plot()
+```
+###hist
+```python
+frame.hist(alpha=0.5, bins=100) #or auto
+```

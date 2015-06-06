@@ -1,0 +1,331 @@
+---
+layout: post
+title:  "CSS"
+categories: jekyll update
+tags: 杂记 待整理
+---
+
+##Adding CSS to a Page
+```css
+//not meant to be shared.
+<body style="background-color: #d0d0d0" >
+</body>
+
+//internal style
+<style type="text/css">
+	h1 {
+		color: white;
+		background-color: #e1feee;
+	}
+</style>  //duplicate, download each file
+
+//External style
+<link rel="main.css">
+<style type="text/css">
+	@import 'css/more-styles.css';
+</style>
+main.css
+@import 'more-styles.css';
+	h1 {
+		background-color: #e1feee;
+	} //flexibility
+```
+
+##Selector
+```css
+' ', >, +, ~
+```
+
+##Pesudo-classes
+```css
+a:link {  /*has not be clicked*/
+	color: red;
+}
+a:visited {
+	color: green;
+}
+a:active { /*being pressed*/
+	font-size: 26px;
+}
+a:hover {
+	color: white;
+	text-decoration: none;
+	background-color: tomato;
+}
+input:focus {
+	background-color: yellow;
+}
+:focus {  /*each link form element*/
+	background-color: yellow;
+}
+```
+
+##basic structural pesudo-classes
+```css
+li:last-child {}
+li:only-child {}
+
+a[href^="http://"] {}
+a[href$=".pdf"] {
+	background: url('../image/doc.png') no-repeat 0 2px;
+	padding-left: 25px;
+}
+a[href*="thumb"] {}
+
+li:nth-child(even) {}
+li:nth-child(3) {}
+li:nth-child(2n+3) {} /*3:offset, 2:loop*/
+li:nth-child(-n+3) {}
+li:nth-last-child(-n+3) {}
+
+div:nth-of-type(2) {}
+div:nth-of-last-type(2) {}
+div:only-of-type() {}
+
+:root {}
+:target {} /*kind of like focus*/
+:empty {} /*warning user that no result were found or return */
+div:not(:empty) {
+	background-color: tomato;
+}
+<input type="text" name="email" placeholder="email" disabled>
+:disabled {
+	color: #ddd;
+}
+
+input[type="radio"]:checked + label {
+	font-size: 22px;
+}
+
+```
+
+##pesudo elements
+```css
+.intro::first-line {}  /*defined by browser's width*/
+.intro::first-letter {
+	float: left;
+	margin: 10px 10px;
+	padding: 5px 10px;
+	background: #e0e0e0;
+	font-size: 100px;
+	line-height:1;
+}
+
+.phone::before {  /* ::after */
+	content: "\2706";
+	/*
+	content: url(./page.png);
+	margin: 0 8px;
+	*/
+}
+.dload::after {
+	content: attr(href);
+	padding-left: 10px;
+	font-size: .75em;
+	color: tomato;
+}
+.box::before, 
+.box:after {
+	content: "";
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background: royalblue;
+	border-radius: 50%;
+	margin: 15px 15px 0 15px;
+}
+```
+
+##Values and Units
+###absolute length units
+```css
+.cm {
+	width: 21.16cm;
+}
+.mm {
+	width: 211.6mm;
+}
+.in {
+	width: 8.33in;
+}
+.pc {
+	width: 50pc;
+	font-size: 2.4pc;
+}
+.pt {
+	width: 600pt;
+	font-size: 28.4pt;
+}
+.px {
+	width: 800px;
+	font-size: 38px;
+}
+/*
+rem
+*/
+###numeric and textual data types
+[full property table](http://www.w3.org/TR/CSS2/propidx.html)
+```css
+/*
+auto
+*/
+div {
+	width: 700px;
+	padding: 2em;
+	margin: auto;
+}
+
+p {
+	color: red; /*a element remain blue*/
+}
+a {
+	color: inherit;
+}
+strong {
+	color: initial; /*do not use parent's css*/
+}
+
+div:after {  /*div::after also works */
+	content: "aaaaa\"escape\"";
+	font-size: 1.5em;
+	color: blue;
+}
+
+div {
+	width: 700px;
+	padding: 2em;
+	margin: auto;
+	margin-top: -8em;
+	background-image: url('bg.jpg');
+}
+
+a {
+	width: 50%; /* 50% of parent element */
+}
+```
+###color values
+```css
+div {
+	background-color: lightblue;
+}
+div {
+	background-color: #ffeedd;
+}
+div {
+	background-color: rgb(12,33,256);
+}
+div {
+	background-color: rgba(12,33,256,.9);
+}
+div {
+	background-color:  hsl(240, 70%, 55%);
+}
+```
+###font properties
+```css
+p {
+	font-family: sans-serif;
+	/*
+	font-family: serif;	
+	font-family: Verdana;	
+	font-family: monospace;	
+	font-family: Courier;	
+	*/
+}
+
+/*web save*/
+```
+###text properties
+```css
+/*
+line height
+*/
+p {
+	line-height: normal;
+	//line-height: 1.5em;
+	text-align: left; //right, center, justify;
+	text-decoration: none; //underline, overline, line-through;
+	text-indent: 1.5em; //-1em;
+	text-transform: uppercase; //lowercase, capitalize;
+	
+	text-shadow: 1px 1px 4px #000;
+	//text-shadow: 1px 1px 4px #000, -1px -1px 8px rgba(62,105,105, .4);
+	overflow: hidden;
+	text-overflow: ellipsis; // ...
+	word-wrap: break-word;
+}
+
+```
+
+##list style
+###list styles
+```css
+ul {
+	list-style-type: square;
+}
+ol {
+	list-style-type: decimal-leading-zero
+}
+li {
+	border: 1px solid #0;
+	list-style-type: none;
+	list-style-image: url('maker.png')
+}
+ol, ul {
+	list-style-position: inside;
+}
+
+ul li {
+	background: url('maker.png') no-repeat 0 2px;
+	padding-left: 35px;
+}
+
+li {
+	list-type: decimal-leading-zero outside; //shot hand way
+}
+```
+
+##Box model
+###concept 
+```html
+<div class="margin-dege">
+	<p class="box"> hihihihih</p>
+</div>
+```
+```css
+/*
+block
+inline
+*/
+.box {
+	background-color: #ccc;
+	padding: 30px 60px 90px 40px;
+
+	border-width: medium 15px thick, thin;
+	border-style: solid none dotted dashed;
+	border-color: #84c9e5 teal grey black;
+	border: 15px solid skyblue;
+
+	margin-top: 30px;
+	margin-right: 2em;
+	margin-bottom: 6%;
+	margin-left: 30px;
+}
+.margin-edge {
+	border: 3px dashed red;
+}
+```
+
+###width, height and overflow properities
+```css
+nav {
+	margin: 10px;
+	visibility: hidden; //visible
+	display: block; //none
+}
+a {
+	width: 100px;
+	margin: 15px 0;
+	display: inline-block;
+}
+```

@@ -1,0 +1,90 @@
+---
+layout: post
+title:  "mongodb using records"
+categories: jekyll update
+tags: 待施工
+---
+
+mongodb
+-----
+## robomongo
+
+结果排序  
+
+```
+db.products.find({},
+{'brand_name':1, 'series':1, 'product_name':1,'volume':1,"review_summary.count":1})
+.sort({'brand_name':-1,'product_name':-1})
+```
+## pymongo
+
+基本用法  
+{% highlight python %}
+
+from pymongo import MongoClient
+db = MongoClient()['databas']
+reviews = db.products.find({'review_summary':{'$exists':1}})
+for rev in reviews:
+    print(rev['product_name'])
+    
+{% endhighlight %}
+
+ObjectId 可以多,不可以少。。
+{% highlight python %}
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+db = MongoClient()['test']
+result = db.product.find_one()
+print(ObjectId(result['_id']))
+myid = "53799b0595ca313f2aad412a"
+print(ObjectId(myid))
+#所以ObjectId嵌套没有问题的哟
+{% endhighlight %}
+
+mongo aggregate!!!  
+{% gist allmonday/ac24a5e145f2be4eb6fb %}
+
+## mongo export import dump restore
+
+```
+mongodump -h xxx.xxx.xx.x -d jdmilk -o jd
+mongorestore -d jdmilk -directoryperdb jd/jdmilk
+mongoexport -h xxx.xxx.xx.x -d dev -c mycollection -o mcollection.json
+mongoimport -d dev -c mycollection --file mcollection.json
+```
+
+## mongo update
+
+```
+from bson.objectid imoprt ObjectId
+db.collection.update({'_id': ObjectId("xxxxxxxx"), {"$set":{'target': 'value'}}})
+```
+如果在robomongo下对所有记录做set:
+
+```
+db.products.update({}, {$set: {'industry': 'beer'}}, {multi:true})
+```
+
+```python
+db.products.update({}, {"$unset": {"industry": 1}}, multi=True)
+```
+
+## fucking things in robomongo
+```
+db.collection.insert({'value': '好-p'})
+```
+it will display `好R` in robomongo's GUI, but it is correct inside mongo..
+
+
+## mongo upsert
+```
+r = p_item.update({'source':'taobao'}, {'$set':{'price':21}}, upsert=True)
+```
+
+##PyMongo
+```python
+data = []
+for src_, ids in item['_productsIds'].items():
+    data.extend(list(env.MONGO.product_item_changes.find(
+        {'source': src_, 'product_id': {'$in': ids}, 'date': date})))
+```

@@ -1,0 +1,45 @@
+---
+layout: post
+title:  "BEM CSS命名方式"
+categories: jekyll update
+tags: css 第二个参考链接要好好看看
+---
+
+## BEM怎么来的？
+
+BEM的概念很简单,描述组件三元素: `block`, `element` 和 `modifier`. 举个例子：
+
+- block: 登录框
+- elements: 输入框, 确认键, 标签
+- modifier: 输入验证, 错误提示等
+
+## `--` 和 `__`
+
+这两个标识就是BEM的全部, `--`代表modifier, `__`代表element.
+
+```css
+.block {}
+.block__element {}
+.block--modifier {}
+.block__element--modifier {}
+```
+
+举个例子：
+
+```css
+.form {}
+.form__user {}
+.form__user--error-email-format {}
+.form--valid {}
+```
+
+## 好处在哪里？
+
+- 在css文件中维护了样式之间的关系
+- 不需要再到html文件中确认样式的层级关系
+- 在less或者sass中减少不必要的层级嵌套
+- 易于维护 (修改嵌套的less文件很麻烦)
+
+## 参考链接
+- [MindBEMding - getting your head 'round BEM syntax'](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
+- [css guide lines](http://cssguidelin.es/)
