@@ -15,7 +15,9 @@ tags: tornado asynchronous
 ```
 
 注: 添加了sleep 来增加响应时间
+
 ```python
+
 # 同步代码
 class LoadTestHandlerSync(BaseHandler):
 
