@@ -1,0 +1,116 @@
+---
+layout: post
+title:  "tornado 么就是用异步啊"
+categories: computer
+tags: tornado asynchronous
+---
+
+# 测试
+
+```python
+
+    (r"/api/loadtest1", "handlers.test.LoadTestHandlerSync"),
+    (r"/api/loadtest2", "handlers.test.LoadTestHandlerAsync"),
+    (r"/api/loadtest3", "handlers.test.LoadTestHandlerCo")
+```
+
+注: 添加了sleep 来增加响应时间
+```python
+# 同步代码
+class LoadTestHandlerSync(BaseHandler):
+
+    def get(self):
+        delay = float(self.get_argument('delay', 0.01))
+        print delay
+        time.sleep(delay)
+
+        http_client = tornado.httpclient.HTTPClient()
+        response = http_client.fetch("http://www.baidu.com")
+
+        self.write(response.body)
+
+          
+# 异步, 使用asynchronous decorator
+class LoadTestHandlerAsync(BaseHandler):
+
+    @tornado.web.asynchronous
+    def get(self):
+        delay = float(self.get_argument('delay', 0.01))
+        print delay
+
+        http_client = tornado.httpclient.AsyncHTTPClient()
+        http_client.fetch("http://www.baidu.com", callback=self.on_response)
+
+    def on_response(self, response):
+        self.write(response.body)
+        self.finish()
+
+          
+# 异步, 使用coroutine decorator
+class LoadTestHandlerCo(BaseHandler):
+
+    @gen.coroutine
+    def get(self):
+        delay = float(self.get_argument('delay', 0.01))
+        print delay
+
+        http_client = tornado.httpclient.AsyncHTTPClient()
+        data = yield http_client.fetch("http://www.baidu.com")
+        self.write(data.body)
+```
+
+使用 `siege` 测试结果:
+
+```
+siege http://localhost:8888/api/loadtest1?delay=0.1 -c10 -t20s
+
+Transactions: 104 hits
+Availability: 100.00 %
+Elapsed time: 19.44 secs
+Data transferred: 1.37 MB
+Response time: 1.29 secs
+Transaction rate: 5.35 trans/sec
+Throughput: 0.07 MB/sec
+Concurrency: 6.88
+Successful transactions: 104
+Failed transactions: 0
+Longest transaction: 1.91
+Shortest transaction: 0.17
+```
+
+  
+```
+siege http://localhost:8888/api/loadtest2?delay=0.1 -c10 -t20s
+
+Transactions: 334 hits
+Availability: 100.00 %
+Elapsed time: 19.30 secs
+Data transferred: 4.41 MB
+Response time: 0.08 secs
+Transaction rate: 17.31 trans/sec
+Throughput: 0.23 MB/sec
+Concurrency: 1.41
+Successful transactions: 334
+Failed transactions: 0
+Longest transaction: 0.36
+Shortest transaction: 0.06
+```
+
+  
+```
+siege http://localhost:8888/api/loadtest3?delay=0.1 -c10 -t20s
+
+Transactions: 332 hits
+Availability: 100.00 %
+Elapsed time: 19.96 secs
+Data transferred: 4.38 MB
+Response time: 0.09 secs
+Transaction rate: 16.63 trans/sec
+Throughput: 0.22 MB/sec
+Concurrency: 1.50
+Successful transactions: 332
+Failed transactions: 0
+Longest transaction: 0.39
+Shortest transaction: 0.06
+```
+  
