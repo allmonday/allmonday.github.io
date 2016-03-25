@@ -148,6 +148,12 @@ http://www.7330.com/op/1108774.shtml
 http://www.7330.com/op/1108774_2.shtml
 ```
 
+## 更新
+TamperMonkey 有支持跨域的ajax 方法, 脚本简化如下:
+
+```javascript
+
+```
 ## 其他问题
 
 1. https 的链接无法发送 
