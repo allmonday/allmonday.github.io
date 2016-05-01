@@ -1,6 +1,4 @@
 name: Tangkikodo 博客
-markdown: redcarpet
-redcarpet:
-    extensions: ["tables"]
-pygments: true
+markdown: kramdown
+highlighter: pygments
 pagination: 5

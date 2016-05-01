@@ -19,18 +19,17 @@ db.products.find({},
 ## pymongo
 
 基本用法  
-{% highlight python %}
 
+```python
 from pymongo import MongoClient
 db = MongoClient()['databas']
 reviews = db.products.find({'review_summary':{'$exists':1}})
 for rev in reviews:
     print(rev['product_name'])
-    
-{% endhighlight %}
+```
 
 ObjectId 可以多,不可以少。。
-{% highlight python %}
+```python
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 db = MongoClient()['test']
@@ -39,10 +38,9 @@ print(ObjectId(result['_id']))
 myid = "53799b0595ca313f2aad412a"
 print(ObjectId(myid))
 #所以ObjectId嵌套没有问题的哟
-{% endhighlight %}
+```
 
 mongo aggregate!!!  
-{% gist allmonday/ac24a5e145f2be4eb6fb %}
 
 ## mongo export import dump restore
 

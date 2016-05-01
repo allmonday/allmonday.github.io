@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "计算的本质 python版代码(一)"
-date:  2016-05-01 08:24:28
-categories: jekyll update
+tags: programming
 ---
+
 
 # 第一章
 
