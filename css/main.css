@@ -143,6 +143,12 @@ a:visited { color: rgb(65, 165, 86); }
   content: ' ';
 }
 
+.site .github {
+  text-align: center; 
+  color: #f5f5f5;
+  font-size: 12px;
+}
+  
 .meta {
   color: #aaa;
 }
