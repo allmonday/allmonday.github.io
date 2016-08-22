@@ -8,19 +8,20 @@ tags: mobile rem
 
 ## rem 布局准备
 选择rem 还是出于兼容性的考虑, 使用的方案是动态修改html 的font-size.
+
 p.s.: 以下代码都是基于640px像素的设计稿
 
 ```javascript
-	function initSize() {
-		var deviceWidth = document.documentElement.clientWidth;
-		if(deviceWidth > 640) deviceWidth = 640;
-		document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
-	}
-	initSize();
-	document.querySelector('.landing-container').className = ".landing-container";  // delete hide class
-	jQuery(function () {
-		$(window).resize(initSize);
-	})
+function initSize() {
+	var deviceWidth = document.documentElement.clientWidth;
+	if(deviceWidth > 640) deviceWidth = 640;
+	document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+}
+initSize();
+document.querySelector('.landing-container').className = ".landing-container";  // delete hide class
+jQuery(function () {
+	$(window).resize(initSize);
+})
 ```
 
 注意代码执行之前, 页面会有个变化过程, 所以最好在初始化的时候隐藏html元素.
@@ -95,6 +96,7 @@ body {
 ## 结束
 
 这样就能基本实现mobile端的等比例缩放的布局了, 可以保证在不同浏览器尺寸下有相同的布局体验,
+
 当然宽度的上限设置为了640px, 超过这个尺寸就该去pc端页面了.
 
 另外在手机浏览器中,flex布局实现居中是非常方便的,而且兼容性也不错,可以多用用.
