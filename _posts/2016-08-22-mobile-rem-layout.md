@@ -12,16 +12,31 @@ tags: mobile rem
 p.s.: 以下代码都是基于640px像素的设计稿
 
 ```javascript
-function initSize() {
-	var deviceWidth = document.documentElement.clientWidth;
-	if(deviceWidth > 640) deviceWidth = 640;
-	document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
-}
-initSize();
-document.querySelector('.landing-container').className = ".landing-container";  // delete hide class
-jQuery(function () {
-	$(window).resize(initSize);
-})
+
+// 插入为head中第一个script标签
+(function () {
+	// flexible.js
+
+	var htmlElement = document.querySelector('html');
+	htmlElement.style.display = 'none';
+
+	// decided by design page width
+	var designWidth = 640;	
+
+	function initSize() {
+		var deviceWidth = document.documentElement.clientWidth;
+		if(deviceWidth > designWidth) deviceWidth = designWidth;
+		document.documentElement.style.fontSize = deviceWidth / (designWidth/100.0) + 'px';
+	}
+	initSize();
+	htmlElement.style.display = 'block';
+
+	window.addEventListener('resize', function () {
+		initSize();
+	})
+
+})();
+
 ```
 
 注意代码执行之前, 页面会有个变化过程, 所以最好在初始化的时候隐藏html元素.
