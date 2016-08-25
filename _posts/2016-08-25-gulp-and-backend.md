@@ -73,16 +73,16 @@ gulpfile.js
 ```javascript
 
 gulp.task('reload_template', function () {
-  return gulp.src([config.proxy_templates])
-    .pipe(tool.reload());
+	return gulp.src([config.proxy_templates])
+		.pipe(tool.reload());
 })
 
 gulp.task('watch', function () {
 
-  if (config.proxy_tornado) {
-    // 监控模板修改
-    gulp.watch(config.proxy_templates, ['reload_template']);
-  }
+	if (config.proxy_tornado) {
+		// 监控模板修改
+		gulp.watch(config.proxy_templates, ['reload_template']);
+	}
 	var scriptWatcher = gulp.watch('src/**/*.{js,json}', ['script']);
 	var styleWatcher = gulp.watch('src/**/*.{css,scss}', ['style']);
 	gulp.watch('src/**/*.{jpg,png}', ['image']);
@@ -107,7 +107,7 @@ module.exports = function (gulp, $, config, tool) {
 				browsers: ["> 1%"],
 			}))
 			.pipe(gulp.dest(dest))
-          .pipe(gulp.dest(config.proxy_static_address))  // 多输出一份到后端目录下
+            .pipe(gulp.dest(config.proxy_static_address))  // 多输出一份到后端目录下
 			.pipe(tool.reload());
 	}
 }
