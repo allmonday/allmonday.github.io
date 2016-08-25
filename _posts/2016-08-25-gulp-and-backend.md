@@ -107,7 +107,7 @@ module.exports = function (gulp, $, config, tool) {
 				browsers: ["> 1%"],
 			}))
 			.pipe(gulp.dest(dest))
-            .pipe(gulp.dest(config.proxy_static_address))  // 多输出一份到后端目录下
+			.pipe(gulp.dest(config.proxy_static_address))  // 多输出一份到后端目录下
 			.pipe(tool.reload());
 	}
 }
