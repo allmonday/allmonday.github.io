@@ -152,8 +152,44 @@ http://www.7330.com/op/1108774_2.shtml
 TamperMonkey 有支持跨域的ajax 方法, 脚本简化如下:
 
 ```javascript
+// ==UserScript==
+// @name         ajax sender
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  send ajax
+// @author       You
+// @match        *://*/*
+// @exclude      http://115.com/*
+// @exclude      http://weixin.tangkikodo.com/*
+// @grant        GM_xmlhttpRequest
+// @require      http://cdn.staticfile.org/jquery/3.0.0-alpha1/jquery.min.js
+
+// ==/UserScript==
+/* jshint -W097 */
+'use strict';
+
+$(function () {
+    console.log('start record');
+    var url = window.location.href;
+    var title = $('title').text() || "";
+
+    GM_xmlhttpRequest({
+        method: "POST",
+        url: "http://git.tangkikodo.com",
+        data: "name="+ url + "&title=" + title,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        onload: function(response) {
+            console.log('record end');
+            console.log(response);
+        }
+    });
+});
+
 
 ```
+
 ## 其他问题
 
 1. https 的链接无法发送 
