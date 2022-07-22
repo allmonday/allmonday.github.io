@@ -2,3 +2,5 @@ name: Tangkikodo 博客
 markdown: kramdown
 highlighter: pygments
 pagination: 5
+
+theme: jekyll-theme-architect
